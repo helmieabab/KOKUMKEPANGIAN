@@ -28,16 +28,18 @@
 </head>
 <body class="py-10">
     <div class="max-w-4xl mx-auto mb-4 no-print px-4">
-        <a href="index.html" class="inline-flex items-center text-blue-900 font-bold hover:text-amber-600 transition-colors uppercase text-sm">
+        <a href="index.html" class="inline-flex items-center text-blue-900 font-bold hover:text-amber-600 transition-colors uppercase text-sm" style="text-decoration: none;">
             ⬅️ Kembali ke Menu Utama
         </a>
     </div>
+
     <div id="inputForm" class="max-w-4xl mx-auto bg-white p-8 rounded-xl shadow-xl no-print border-t-8 border-blue-900 mb-10">
         <div class="text-center mb-8">
             <img src="https://i.postimg.cc/kVCz4Wgj/logo-sk-kepangian.png" alt="Logo" class="mx-auto w-24 mb-4">
             <h1 class="text-3xl font-bold text-blue-900 uppercase">LAPORAN PERJUMPAAN KOKURIKULUM</h1>
             <p class="text-sm text-amber-700 font-bold uppercase tracking-widest">Sekolah Kebangsaan Kepangian Ranau</p>
         </div>
+
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
             <div>
                 <label class="block text-xs font-bold text-gray-500 uppercase mb-1">Unit Kokurikulum</label>
@@ -65,10 +67,12 @@
                 <input type="number" id="meetingNum" class="w-full border-2 p-3 rounded-lg border-gray-200 font-semibold">
             </div>
         </div>
+
         <div class="mb-6">
             <label class="block text-xs font-bold text-gray-500 uppercase mb-1">Tajuk Aktiviti</label>
             <input type="text" id="progTitle" class="w-full border-2 p-3 rounded-lg border-gray-200">
         </div>
+
         <div class="bg-blue-50 p-5 rounded-xl mb-6 border-2 border-blue-100">
             <div class="flex justify-between items-center mb-4">
                 <p class="text-sm font-bold text-blue-900 uppercase">Status Kehadiran</p>
@@ -80,18 +84,22 @@
                 <div class="bg-white p-3 rounded-lg border text-center"><p class="text-[10px] text-gray-400 font-bold uppercase">Peratus</p><p id="statPercent" class="text-xl font-bold text-blue-800">0%</p></div>
             </div>
         </div>
+
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
             <div><label class="block text-xs font-bold text-gray-500 uppercase mb-1">Tarikh</label><input type="date" id="progDate" class="w-full border-2 p-3 rounded-lg border-gray-200"></div>
-            <div><label class="block text-xs font-bold text-gray-500 uppercase mb-1">Hari</label><select id="progDay" class="w-full border-2 p-3 rounded-lg border-gray-200"><option>Rabu</option><option>Sabtu</option><option>Isnin</option><option>Selasa</option><option>Khamis</option><option>Jumaat</option><option>Ahad</option></select></div>
+            <div><label class="block text-xs font-bold text-gray-500 uppercase mb-1">Hari</label><select id="progDay" class="w-full border-2 p-3 rounded-lg border-gray-200"><option>Isnin</option><option>Selasa</option><option>Rabu</option><option>Khamis</option><option>Jumaat</option><option>Sabtu</option><option>Ahad</option></select></div>
             <div><label class="block text-xs font-bold text-gray-500 uppercase mb-1">Masa</label><input type="text" id="progTime" placeholder="Cth: 2:00 - 4:00 PM" class="w-full border-2 p-3 rounded-lg border-gray-200"></div>
         </div>
+
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
             <div><label class="block text-xs font-bold text-gray-500 uppercase mb-1">Tempat</label><input type="text" id="progPlace" class="w-full border-2 p-3 rounded-lg border-gray-200"></div>
             <div><label class="block text-xs font-bold text-gray-500 uppercase mb-1">Guru Penasihat</label><input type="text" id="progAdvisor" class="w-full border-2 p-3 rounded-lg border-gray-200"></div>
         </div>
+
         <textarea id="progObj" placeholder="Objektif Aktiviti..." rows="2" class="w-full border-2 p-3 rounded-lg border-gray-200 mb-4"></textarea>
         <textarea id="progAct" placeholder="Ringkasan Aktiviti..." rows="4" class="w-full border-2 p-3 rounded-lg border-gray-200 mb-4"></textarea>
         <textarea id="progReflect" placeholder="Refleksi / Impak..." rows="2" class="w-full border-2 p-3 rounded-lg border-blue-200 bg-blue-50 mb-8"></textarea>
+
         <div class="mb-10">
             <label class="block text-xs font-bold text-gray-500 uppercase mb-2">Gambar Aktiviti (Maksimum 4)</label>
             <div class="file-upload-wrapper" onclick="document.getElementById('imageInput').click()">
@@ -100,8 +108,10 @@
                 <input type="file" id="imageInput" multiple accept="image/*" class="hidden" onchange="updateFileCount()">
             </div>
         </div>
+
         <button onclick="generateFullReport()" class="w-full bg-blue-900 text-amber-400 font-bold py-5 rounded-xl text-2xl shadow-xl hover:bg-black uppercase">JANA LAPORAN</button>
     </div>
+
     <div id="attendanceModal" class="fixed inset-0 bg-black bg-opacity-60 hidden flex items-center justify-center no-print z-50 p-4">
         <div class="bg-white p-6 rounded-2xl w-full max-w-lg max-h-[85vh] overflow-y-auto">
             <h3 id="modalTitle" class="font-bold text-xl text-blue-900 mb-4 border-b pb-2 uppercase text-center"></h3>
@@ -109,6 +119,7 @@
             <button onclick="closeModal()" class="mt-8 w-full bg-green-700 text-white py-4 rounded-xl font-bold uppercase">Simpan</button>
         </div>
     </div>
+
     <div id="reportSection" class="hidden">
         <div class="luxury-frame page-break">
             <div class="text-center mb-4">
@@ -131,6 +142,7 @@
             </table>
             <div id="rImages" class="image-grid"></div>
         </div>
+
         <div class="luxury-frame">
             <div class="text-center mb-6">
                 <h3 class="font-bold text-lg underline uppercase">LAMPIRAN: REKOD KEHADIRAN MURID</h3>
@@ -138,29 +150,69 @@
                 <p id="rMeetingAttend" class="text-xs font-bold text-amber-800"></p>
             </div>
             <table class="w-full border-collapse border-2 border-gray-800 text-xs">
-                <thead><tr class="bg-slate-100"><th class="border-2 border-gray-800 p-2 w-10">Bil</th><th class="border-2 border-gray-800 p-2 text-left">Nama Penuh Murid</th><th class="border-2 border-gray-800 p-2 w-16">Tahun</th><th class="border-2 border-gray-800 p-2 w-20">Hadir (/)</th></tr></thead>
+                <thead>
+                    <tr class="bg-slate-100">
+                        <th class="border-2 border-gray-800 p-2 w-10">Bil</th>
+                        <th class="border-2 border-gray-800 p-2 text-left">Nama Penuh Murid</th>
+                        <th class="border-2 border-gray-800 p-2 w-16">Tahun</th>
+                        <th class="border-2 border-gray-800 p-2 w-20">Hadir (/)</th>
+                    </tr>
+                </thead>
                 <tbody id="rAttendanceTable"></tbody>
             </table>
         </div>
     </div>
+
     <script>
         const database = {
-            pengakap: [{n: "Fredyano Owen Fredoline", k: "4"}, {n: "Drakee Beilyrone", k: "4"}, {n: "Michorward Courve Clarence", k: "4"}, {n: "Ezraleo Edward Micklos", k: "4"}, {n: "Elysia Juidi", k: "4"}, {n: "Freshly Vallent Hezrin", k: "4"}, {n: "Dynaline Saidin", k: "4"}, {n: "Alver Aiseiro Indro", k: "5"}, {n: "Melbourne Maddox Mitchel", k: "5"}, {n: "Dasewentworth Clarence", k: "6"}, {n: "Nelvin Nefrison Naire", k: "6"}],
-            bsmm: [{n: "Arenley Adrell Elerry Roye", k: "4"}, {n: "Mohd Al Wafiq Afiq Abdullah", k: "4"}, {n: "Muhd Zaal Syahkiz Abdullah", k: "4"}, {n: "Afiqah Azanney Rezileh", k: "4"}, {n: "Haziedah", k: "4"}, {n: "Eve Elsie Hilary", k: "4"}, {n: "Dympna Eunah Selverius", k: "4"}, {n: "Herra Reverra Rajan", k: "5"}, {n: "Aiver Aiseiro Indro", k: "5"}, {n: "Arie Cristo Yosua", k: "5"}, {n: "Dareen Beilyrone", k: "6"}, {n: "Deyanna Emerry Selverius", k: "6"}, {n: "Nur Syaidatul Syafina Isna Artis", k: "6"}, {n: "Crystalinna Dady@Jaidy", k: "6"}],
-            tkrs: [{n: "Fidel Marchel Fazly", k: "4"}, {n: "Nevier Chirst Naire", k: "4"}, {n: "Adam Christdec Hendry", k: "4"}, {n: "Fasha Vanessa Jinus", k: "4"}, {n: "Eva Eliza Hilary", k: "4"}, {n: "Riana Saibit", k: "4"}, {n: "Glenn Dilton George", k: "5"}, {n: "Wellen Alex Nor Vejy", k: "5"}, {n: "Scha Avarella Larry", k: "6"}, {n: "Aldree K.Lorince", k: "6"}, {n: "Junior Adrian Jidak", k: "6"}, {n: "Amber Eve Cristalova Anthony", k: "6"}, {n: "Ardila Jonen", k: "6"}, {n: "Syeldia Ridyana Sem", k: "6"}, {n: "Angle Clarissa Yosua", k: "6"}],
-            badminton: [{n: "Arenley Adriell Elerry Roye", k: "4"}, {n: "Mohd Al Wafiq Afiq Abdullah", k: "4"}, {n: "Michorward Courve Clerance", k: "4"}, {n: "Elysia Juidi", k: "4"}, {n: "Afiqah Azianney Rezileh", k: "4"}, {n: "Dynaline Saidin", k: "4"}, {n: "Herra Reverra Rajan", k: "5"}, {n: "Alver Aiseiro Indro", k: "5"}, {n: "Ardila Jonen", k: "6"}, {n: "Adrian Junior Jidak", k: "6"}, {n: "Deyana Emerry Selverius", k: "6"}, {n: "Adlree K.Lorince", k: "6"}, {n: "Shelydia Ridyana Sem", k: "6"}],
-            bola_baling: [{n: "Fidel Marchel Fazly", k: "4"}, {n: "Nevier Christ Naire", k: "4"}, {n: "Drakee Beilyrone", k: "4"}, {n: "Ezraleo Edward Micklos", k: "4"}, {n: "Fasha Vanessa Jinus", k: "4"}, {n: "Freshly Vallent Hezrin", k: "4"}, {n: "Riana Saibit", k: "4"}, {n: "Glenn Dilton George", k: "5"}, {n: "Arie Cristo Yosua", k: "5"}, {n: "Dase Wentworth Clarence", k: "6"}, {n: "Nelven Neffrison Naire", k: "6"}, {n: "Amber Eve Cristalova Anthony", k: "6"}, {n: "Scha Avariella Larry", k: "6"}, {n: "Angle Clarissa Yosua", k: "6"}],
-            catur: [{n: "Fredayanon Owen Fredoline", k: "4"}, {n: "Mohd Zaal Syahkiz Abdullah", k: "4"}, {n: "Adam Christdec Hendry", k: "4"}, {n: "Eva Eliza Hilary", k: "4"}, {n: "Haziedah", k: "4"}, {n: "Eve Elsie Hilary", k: "4"}, {n: "Dympna Eunah Selverius", k: "4"}, {n: "Avionna Michelle Clarence", k: "4"}, {n: "Wallen Alex Nor Vejy", k: "5"}, {n: "Mealbourne Maddox Mitchel", k: "5"}, {n: "Dareen Beilyrone", k: "6"}, {n: "Nur Shaidatul Shafina Isna Artis", k: "6"}, {n: "Crystalinna Dady@Jaidy", k: "6"}, {n: "Micheel Ajum", k: "6"}],
-            bm: [{n: "Drake Beilyrone", k: "4"}, {n: "Adam Chrisdec Hendry", k: "4"}, {n: "Avionna Michelle Binti Rolance", k: "4"}, {n: "Nevier Christ Naire", k: "4"}, {n: "Afiqah Azzanney Binti Rezileh", k: "4"}, {n: "Elysia Juidi", k: "4"}, {n: "Dynaline Saidin", k: "4"}, {n: "Melbourne Maddox", k: "5"}, {n: "Herra Reverra Rajan", k: "5"}, {n: "Angle Yosua", k: "6"}, {n: "Shelydia Ridyana Sem", k: "6"}, {n: "Dase wentworth Clarence", k: "6"}, {n: "Darren Beilyrone", k: "6"}, {n: "Micheel Ajum", k: "6"}],
-            bi: [{n: "Fredano Owen Fredoline", k: "4"}, {n: "Riana Saibit", k: "4"}, {n: "Ezraleo Edward Micklos", k: "4"}, {n: "Fasha Vanassa Jinus", k: "4"}, {n: "Fidel Marchel Fazly", k: "4"}, {n: "Haeziedah", k: "4"}, {n: "Michoward Courve Clarence", k: "4"}, {n: "Arie Cristo Yosua", k: "5"}, {n: "Wallent", k: "5"}, {n: "Scha Aravilla Larry", k: "6"}, {n: "Aldree K.Lorince", k: "6"}, {n: "Amber Cristalova Anthony", k: "6"}, {n: "Emmerry Dyannah Selverius", k: "6"}],
-            stem: [{n: "Arenley Adriell Elerry Roye", k: "4"}, {n: "Freshly Vellant Hezrin", k: "4"}, {n: "Mohd Zaal Syahkiz bin Abdullah", k: "4"}, {n: "Eva Eliza Hilary", k: "4"}, {n: "Eve Elsie Hilary", k: "4"}, {n: "Dympna Eunah Silverius", k: "4"}, {n: "Mohd Al Wafiq Afiq bin Abdullah", k: "4"}, {n: "Gleen Dilton George", k: "5"}, {n: "Alver Aiseiro Indro", k: "5"}, {n: "Adrian Junior Jidak", k: "6"}, {n: "Nelven Neffrison Naire", k: "6"}, {n: "Nur Shafina", k: "6"}, {n: "Ardila Jonen", k: "6"}, {n: "Crystalinna Dady@JAidy", k: "6"}]
+            pengakap: [
+                {n: "MOHD AYDEN", k: "3"}, {n: "NAURA", k: "3"}, {n: "SHE RIEYANA", k: "3"}, {n: "ARYA ARIANA", k: "3"}, {n: "STEFEN", k: "3"},
+                {n: "Fredyano Owen Fredoline", k: "4"}, {n: "Drakee Beilyrone", k: "4"}, {n: "Michorward Courve Clarence", k: "4"}, {n: "Ezraleo Edward Micklos", k: "4"}, {n: "Elysia Juidi", k: "4"}, {n: "Freshly Vallent Hezrin", k: "4"}, {n: "Dynaline Saidin", k: "4"}, {n: "Alver Aiseiro Indro", k: "5"}, {n: "Melbourne Maddox Mitchel", k: "5"}, {n: "Dasewentworth Clarence", k: "6"}, {n: "Nelvin Nefrison Naire", k: "6"}
+            ],
+            bsmm: [
+                {n: "YORICOLEE", k: "3"}, {n: "IRMAYSARAH", k: "3"}, {n: "CHRISTAL", k: "3"}, {n: "ANGENI", k: "3"}, {n: "ALFAN", k: "3"}, {n: "CALVIN", k: "3"},
+                {n: "Arenley Adrell Elerry Roye", k: "4"}, {n: "Mohd Al Wafiq Afiq Abdullah", k: "4"}, {n: "Muhd Zaal Syahkiz Abdullah", k: "4"}, {n: "Afiqah Azanney Rezileh", k: "4"}, {n: "Haziedah", k: "4"}, {n: "Eve Elsie Hilary", k: "4"}, {n: "Dympna Eunah Selverius", k: "4"}, {n: "Herra Reverra Rajan", k: "5"}, {n: "Aiver Aiseiro Indro", k: "5"}, {n: "QAMARUL HAFIZ BIN MOHD QUDDUS", k: "5"}, {n: "Dareen Beilyrone", k: "6"}, {n: "Deyanna Emerry Selverius", k: "6"}, {n: "Nur Syaidatul Syafina Isna Artis", k: "6"}, {n: "Crystalinna Dady@Jaidy", k: "6"}
+            ],
+            tkrs: [
+                {n: "EZROY", k: "3"}, {n: "AMERA", k: "3"}, {n: "AMBER", k: "3"}, {n: "QUENCYNOVIC", k: "3"}, {n: "NEKHO", k: "3"},
+                {n: "Fidel Marchel Fazly", k: "4"}, {n: "Nevier Chirst Naire", k: "4"}, {n: "Adam Christdec Hendry", k: "4"}, {n: "Fasha Vanessa Jinus", k: "4"}, {n: "Eva Eliza Hilary", k: "4"}, {n: "Riana Saibit", k: "4"}, {n: "Glenn Dilton George", k: "5"}, {n: "Wellen Alex Nor Vejy", k: "5"}, {n: "Scha Avarella Larry", k: "6"}, {n: "Aldree K.Lorince", k: "6"}, {n: "Junior Adrian Jidak", k: "6"}, {n: "Amber Eve Cristalova Anthony", k: "6"}, {n: "Ardila Jonen", k: "6"}, {n: "Syeldia Ridyana Sem", k: "6"}
+            ],
+            badminton: [
+                {n: "YORICOLEE", k: "3"}, {n: "NAURA", k: "3"}, {n: "AMBER", k: "3"}, {n: "ANGENI", k: "3"}, {n: "ALFAN", k: "3"},
+                {n: "Arenley Adriell Elerry Roye", k: "4"}, {n: "Mohd Al Wafiq Afiq Abdullah", k: "4"}, {n: "Michorward Courve Clerance", k: "4"}, {n: "Elysia Juidi", k: "4"}, {n: "Afiqah Azianney Rezileh", k: "4"}, {n: "Dynaline Saidin", k: "4"}, {n: "Herra Reverra Rajan", k: "5"}, {n: "Alver Aiseiro Indro", k: "5"}, {n: "Ardila Jonen", k: "6"}, {n: "Adrian Junior Jidak", k: "6"}, {n: "Deyana Emerry Selverius", k: "6"}, {n: "Adlree K.Lorince", k: "6"}, {n: "Shelydia Ridyana Sem", k: "6"}
+            ],
+            bola_baling: [
+                {n: "MOHD AYDEN", k: "3"}, {n: "AMERA", k: "3"}, {n: "SHE RIEYANA", k: "3"}, {n: "ARYA ARIANA", k: "3"}, {n: "NEKHO", k: "3"},
+                {n: "Fidel Marchel Fazly", k: "4"}, {n: "Nevier Christ Naire", k: "4"}, {n: "Drakee Beilyrone", k: "4"}, {n: "Ezraleo Edward Micklos", k: "4"}, {n: "Fasha Vanessa Jinus", k: "4"}, {n: "Freshly Vallent Hezrin", k: "4"}, {n: "Riana Saibit", k: "4"}, {n: "Glenn Dilton George", k: "5"}, {n: "QAMARUL HAFIZ BIN MOHD QUDDUS", k: "5"}, {n: "Dase Wentworth Clarence", k: "6"}, {n: "Nelven Neffrison Naire", k: "6"}, {n: "Amber Eve Cristalova Anthony", k: "6"}, {n: "Scha Avariella Larry", k: "6"}
+            ],
+            catur: [
+                {n: "EZROY", k: "3"}, {n: "IRMAYSARAH", k: "3"}, {n: "CHRISTAL", k: "3"}, {n: "QUENCYNOVIC", k: "3"}, {n: "STEFEN", k: "3"}, {n: "CALVIN", k: "3"},
+                {n: "Fredayanon Owen Fredoline", k: "4"}, {n: "Mohd Zaal Syahkiz Abdullah", k: "4"}, {n: "Adam Christdec Hendry", k: "4"}, {n: "Eva Eliza Hilary", k: "4"}, {n: "Haziedah", k: "4"}, {n: "Eve Elsie Hilary", k: "4"}, {n: "Dympna Eunah Selverius", k: "4"}, {n: "Avionna Michelle Clarence", k: "4"}, {n: "Wallen Alex Nor Vejy", k: "5"}, {n: "Mealbourne Maddox Mitchel", k: "5"}, {n: "Dareen Beilyrone", k: "6"}, {n: "Nur Shaidatul Shafina Isna Artis", k: "6"}, {n: "Crystalinna Dady@Jaidy", k: "6"}, {n: "Micheel Ajum", k: "6"}
+            ],
+            bm: [
+                {n: "MOHD AYDEN", k: "3"}, {n: "IRMAYSARAH", k: "3"}, {n: "SHE RIEYANA", k: "3"}, {n: "ARYA ARIANA", k: "3"}, {n: "NEKHO", k: "3"},
+                {n: "Drake Beilyrone", k: "4"}, {n: "Adam Chrisdec Hendry", k: "4"}, {n: "Avionna Michelle Binti Rolance", k: "4"}, {n: "Nevier Christ Naire", k: "4"}, {n: "Afiqah Azzanney Binti Rezileh", k: "4"}, {n: "Elysia Juidi", k: "4"}, {n: "Dynaline Saidin", k: "4"}, {n: "Melbourne Maddox", k: "5"}, {n: "Herra Reverra Rajan", k: "5"}, {n: "Shelydia Ridyana Sem", k: "6"}, {n: "Dase wentworth Clarence", k: "6"}, {n: "Darren Beilyrone", k: "6"}, {n: "Micheel Ajum", k: "6"}
+            ],
+            bi: [
+                {n: "YORICOLEE", k: "3"}, {n: "AMERA", k: "3"}, {n: "CHRISTAL", k: "3"}, {n: "ANGENI", k: "3"}, {n: "ALFAN", k: "3"},
+                {n: "Fredano Owen Fredoline", k: "4"}, {n: "Riana Saibit", k: "4"}, {n: "Ezraleo Edward Micklos", k: "4"}, {n: "Fasha Vanassa Jinus", k: "4"}, {n: "Fidel Marchel Fazly", k: "4"}, {n: "Haeziedah", k: "4"}, {n: "Michoward Courve Clarence", k: "4"}, {n: "QAMARUL HAFIZ BIN MOHD QUDDUS", k: "5"}, {n: "Wallent", k: "5"}, {n: "Scha Aravilla Larry", k: "6"}, {n: "Aldree K.Lorince", k: "6"}, {n: "Amber Cristalova Anthony", k: "6"}, {n: "Emmerry Dyannah Selverius", k: "6"}
+            ],
+            stem: [
+                {n: "EZROY", k: "3"}, {n: "NAURA", k: "3"}, {n: "AMBER", k: "3"}, {n: "QUENCYNOVIC", k: "3"}, {n: "STEFEN", k: "3"}, {n: "CALVIN", k: "3"},
+                {n: "Arenley Adriell Elerry Roye", k: "4"}, {n: "Freshly Vellant Hezrin", k: "4"}, {n: "Mohd Zaal Syahkiz bin Abdullah", k: "4"}, {n: "Eva Eliza Hilary", k: "4"}, {n: "Eve Elsie Hilary", k: "4"}, {n: "Dympna Eunah Silverius", k: "4"}, {n: "Mohd Al Wafiq Afiq bin Abdullah", k: "4"}, {n: "Gleen Dilton George", k: "5"}, {n: "Alver Aiseiro Indro", k: "5"}, {n: "Adrian Junior Jidak", k: "6"}, {n: "Nelven Neffrison Naire", k: "6"}, {n: "Nur Shafina", k: "6"}, {n: "Ardila Jonen", k: "6"}, {n: "Crystalinna Dady@JAidy", k: "6"}
+            ]
         };
+
         let selectedAttendance = [];
+
         function updateFileCount() {
             const input = document.getElementById('imageInput');
             const display = document.getElementById('fileCount');
-            if(input.files.length > 0) { display.innerText = input.files.length + " gambar dipilih."; }
+            if(input.files.length > 0) {
+                display.innerText = input.files.length + " gambar dipilih.";
+            }
         }
+
         function showAttendanceList() {
             const unit = document.getElementById('unitSelect').value;
             if(!unit) return alert("Pilih unit!");
@@ -171,11 +223,15 @@
                 const div = document.createElement('div');
                 div.className = "flex items-center p-3 hover:bg-slate-50 border-b";
                 const isChecked = selectedAttendance.includes(murid.n) ? 'checked' : '';
-                div.innerHTML = `<input type="checkbox" id="m-${index}" value="${murid.n}" ${isChecked} onchange="updateStats()" class="w-6 h-6 mr-4"><label for="m-${index}" class="text-sm font-bold">${murid.n} (Thn ${murid.k})</label>`;
+                div.innerHTML = `
+                    <input type="checkbox" id="m-${index}" value="${murid.n}" ${isChecked} onchange="updateStats()" class="w-6 h-6 mr-4">
+                    <label for="m-${index}" class="text-sm font-bold text-gray-700">${murid.n} (Tahun ${murid.k})</label>
+                `;
                 listContainer.appendChild(div);
             });
             document.getElementById('attendanceModal').classList.remove('hidden');
         }
+
         function updateStats() {
             const unit = document.getElementById('unitSelect').value;
             const checkboxes = document.querySelectorAll('#namesList input:checked');
@@ -187,17 +243,19 @@
             document.getElementById('statTotal').innerText = total;
             document.getElementById('statPercent').innerText = percent + "%";
         }
+
         function closeModal() { document.getElementById('attendanceModal').classList.add('hidden'); }
         function resetAttendance() { selectedAttendance = []; updateStats(); }
+
         function generateFullReport() {
             const unit = document.getElementById('unitSelect').value;
-            if(!unit) return alert("Pilih unit!");
+            if(!unit) return alert("Sila pilih unit dahulu!");
             const fullUnitName = document.getElementById('unitSelect').options[document.getElementById('unitSelect').selectedIndex].text;
             document.getElementById('rUnit').innerText = fullUnitName;
             document.getElementById('rTitle').innerText = document.getElementById('progTitle').value;
             document.getElementById('rMeetingNum').innerText = document.getElementById('meetingNum').value;
             const dateVal = document.getElementById('progDate').value;
-            let fmtDate = ""; if(dateVal) { const d = new Date(dateVal); fmtDate = d.getDate()+'/'+(d.getMonth()+1)+'/'+d.getFullYear(); }
+            let fmtDate = ""; if(dateVal) { const d = new Date(dateVal); fmtDate = d.getDate() + '/' + (d.getMonth() + 1) + '/' + d.getFullYear(); }
             document.getElementById('rDateTime').innerText = fmtDate + " (" + document.getElementById('progDay').value + ")";
             document.getElementById('rTime').innerText = document.getElementById('progTime').value;
             document.getElementById('rPlace').innerText = document.getElementById('progPlace').value;
@@ -206,14 +264,22 @@
             document.getElementById('rObj').innerText = document.getElementById('progObj').value;
             document.getElementById('rAct').innerText = document.getElementById('progAct').value;
             document.getElementById('rReflect').innerText = document.getElementById('progReflect').value;
+
             document.getElementById('rUnitAttend').innerText = fullUnitName;
             document.getElementById('rMeetingAttend').innerText = "PERJUMPAAN KALI KE-" + document.getElementById('meetingNum').value;
             const tableBody = document.getElementById('rAttendanceTable');
             tableBody.innerHTML = '';
             database[unit].forEach((murid, idx) => {
-                const row = `<tr><td class="border-2 border-gray-800 p-2 text-center font-bold">${idx+1}</td><td class="border-2 border-gray-800 p-2 font-bold uppercase">${murid.n}</td><td class="border-2 border-gray-800 p-2 text-center font-bold">${murid.k}</td><td class="border-2 border-gray-800 p-2 text-center font-bold text-xl">${selectedAttendance.includes(murid.n) ? '/' : ''}</td></tr>`;
+                const row = `
+                    <tr>
+                        <td class="border-2 border-gray-800 p-2 text-center font-bold">${idx+1}</td>
+                        <td class="border-2 border-gray-800 p-2 font-bold uppercase">${murid.n}</td>
+                        <td class="border-2 border-gray-800 p-2 text-center font-bold">${murid.k}</td>
+                        <td class="border-2 border-gray-800 p-2 text-center font-bold text-xl">${selectedAttendance.includes(murid.n) ? '/' : ''}</td>
+                    </tr>`;
                 tableBody.innerHTML += row;
             });
+
             const images = document.getElementById('imageInput').files;
             const imgContainer = document.getElementById('rImages');
             imgContainer.innerHTML = '';
@@ -222,9 +288,10 @@
                 reader.onload = (e) => { imgContainer.innerHTML += `<img src="${e.target.result}">`; }
                 reader.readAsDataURL(file);
             });
+
             document.getElementById('inputForm').classList.add('hidden');
             document.getElementById('reportSection').classList.remove('hidden');
-            setTimeout(() => { window.print(); }, 1200);
+            setTimeout(() => { window.print(); }, 1000);
         }
     </script>
 </body>
