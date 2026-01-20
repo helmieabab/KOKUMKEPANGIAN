@@ -4,60 +4,40 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sistem Takwim SK Kepangian</title>
-    
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.10/index.global.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-    
     <style>
         body { font-family: 'Poppins', sans-serif; background-color: #f4f7f6; margin: 0; padding: 10px; }
         .container { max-width: 1000px; margin: auto; background: white; padding: 20px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); min-height: 80vh; }
-        
         .header-dash { display: flex; align-items: center; justify-content: center; gap: 15px; margin-bottom: 20px; border-bottom: 2px solid #3498db; padding-bottom: 15px; }
         .logo-img { width: 70px; height: auto; }
         .header-text h1 { margin: 0; font-size: 18px; color: #2c3e50; }
         .header-text p { margin: 0; color: #3498db; font-weight: 600; font-size: 13px; }
-
-        /* Panjangkan list kalendar untuk phone */
         #calendar { min-height: 700px; }
-
-        /* Modal Settings */
         .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); overflow: auto; }
-        .modal-content { 
-            background: white; margin: 5% auto; padding: 15px; border-radius: 12px; width: 95%; max-width: 850px; 
-            position: relative; height: auto; min-height: 80vh; display: flex; flex-direction: column; 
-        }
-        
-        .modal-header-actions { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #eee; padding-bottom: 10px; margin-bottom: 10px; }
+        .modal-content { background: white; margin: 5% auto; padding: 15px; border-radius: 12px; width: 95%; max-width: 850px; position: relative; height: auto; display: flex; flex-direction: column; }
         .btn-print { background: #27ae60; color: white; border: none; padding: 10px 15px; border-radius: 8px; cursor: pointer; font-weight: 600; font-size: 12px; }
         .close-btn { font-size: 40px; cursor: pointer; color: #e74c3c; line-height: 1; }
-
-        #printableArea { overflow-y: visible; padding: 5px; background: white; flex-grow: 1; }
         .report-table { width: 100%; border-collapse: collapse; margin-top: 10px; }
         .report-table th, .report-table td { border: 1px solid #000; padding: 10px; text-align: left; font-size: 13px; color: #000; }
         .report-table th { background-color: #f2f2f2 !important; }
-
-        /* Responsif Phone */
-        @media (max-width: 600px) {
-            .header-dash { flex-direction: column; text-align: center; }
-            .header-text h1 { font-size: 16px; }
-            .report-table th, .report-table td { font-size: 11px; padding: 8px; }
-            .modal-content { margin: 2% auto; width: 98%; }
-        }
-
         @media print {
             body { background: white; padding: 0; }
-            .container, .fc, .modal-header-actions { display: none !important; }
+            .container, .fc, .modal-header-actions, .back-link { display: none !important; }
             .modal { position: absolute; display: block !important; overflow: visible !important; background: none; }
-            .modal-content { display: block !important; min-height: auto !important; width: 100%; border: none; margin: 0; padding: 0; }
-            #printableArea { overflow: visible !important; }
+            .modal-content { display: block !important; width: 100%; border: none; margin: 0; padding: 0; }
         }
     </style>
 </head>
 <body>
-
 <div class="container">
+    <div class="back-link" style="margin-bottom: 15px;">
+        <a href="index.html" style="text-decoration: none; color: #3498db; font-weight: bold; font-size: 13px; display: flex; align-items: center; gap: 5px;">
+            ⬅️ KEMBALI KE MENU UTAMA
+        </a>
+    </div>
     <div class="header-dash">
-        <img src="logo.png" alt="Logo Sekolah" class="logo-img" onerror="this.src='https://via.placeholder.com/90?text=LOGO'">
+        <img src="https://i.postimg.cc/kVCz4Wgj/logo-sk-kepangian.png" alt="Logo" class="logo-img">
         <div class="header-text">
             <h1>SEKOLAH KEBANGSAAN KEPANGIAN</h1>
             <p>SISTEM TAKWIM KOKURIKULUM 2026</p>
@@ -65,96 +45,48 @@
     </div>
     <div id="calendar"></div>
 </div>
-
 <div id="eventModal" class="modal">
     <div class="modal-content">
-        <div class="modal-header-actions">
+        <div class="modal-header-actions" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; border-bottom: 1px solid #eee; padding-bottom: 10px;">
             <span style="font-weight: bold; color: #555; font-size: 12px;">PRATINJAU LAPORAN</span>
             <div style="display: flex; gap: 15px; align-items: center;">
                 <button class="btn-print" onclick="window.print()">🖨️ CETAK</button>
                 <span class="close-btn" onclick="closeModal()">&times;</span>
             </div>
         </div>
-
         <div id="printableArea">
             <div style="display: flex; align-items: center; justify-content: center; gap: 15px; border-bottom: 4px double #000; padding-bottom: 10px; margin-bottom: 15px;">
-                <img src="logo.png" alt="Logo" style="width: 60px;" onerror="this.src='https://via.placeholder.com/80?text=LOGO'">
+                <img src="https://i.postimg.cc/kVCz4Wgj/logo-sk-kepangian.png" alt="Logo" style="width: 60px;">
                 <div style="text-align: center;">
                     <h2 style="margin:0; font-size: 16px;">SEKOLAH KEBANGSAAN KEPANGIAN</h2>
                     <h3 style="margin:3px 0; font-weight: 400; font-size: 13px;">JADUAL PERJUMPAAN MINGGUAN KOKURIKULUM</h3>
                     <p style="margin:0; font-weight: bold; font-size: 12px;" id="displayDate"></p>
                 </div>
             </div>
-
             <table class="report-table">
-                <thead>
-                    <tr>
-                        <th width="35%">Unit</th>
-                        <th width="45%">Guru Bertugas</th>
-                        <th width="20%">Masa</th>
-                    </tr>
-                </thead>
+                <thead><tr><th width="35%">Unit</th><th width="45%">Guru Bertugas</th><th width="20%">Masa</th></tr></thead>
                 <tbody id="weeklyList"></tbody>
             </table>
-            
             <div style="margin-top: 40px; display: flex; justify-content: space-between; padding: 0 10px; font-size: 12px;">
-                <div style="text-align: center;">
-                    <p>Disediakan oleh:</p><br><br>
-                    <p>___________________<br><strong>MOHAMAD HELMIE BIN ABAB</strong><br>PK Kokurikulum</p>
-                </div>
-                <div style="text-align: center;">
-                    <p>Disahkan oleh:</p><br><br>
-                    <p>___________________<br><strong>JOANNA BINTI SUHAIMIN</strong><br>Guru Besar</p>
-                </div>
+                <div style="text-align: center;"><p>Disediakan oleh:</p><br><br><p>___________________<br><strong>MOHAMAD HELMIE BIN ABAB</strong><br>PK Kokurikulum</p></div>
+                <div style="text-align: center;"><p>Disahkan oleh:</p><br><br><p>___________________<br><strong>JOANNA BINTI SUHAIMIN</strong><br>Guru Besar</p></div>
             </div>
         </div>
     </div>
 </div>
-
 <script>
 const MASA_AKTIVITI = "12:40 PM - 2:40 PM";
-
-const GURU_UB = {
-    'PENGAKAP KANAK-KANAK': ['MATRAUZEY LUJI', 'MOHD QUDDUS BIN ROSLI', 'SHAMSIAH FAUZI@UDI', 'RIMEH GIWOD'],
-    'TUNAS KADET REMAJA SEKOLAH': ['ANDREW ARID', 'MOHAMAD HELMIE BIN ABAB', 'SANISAH SUZIELA MUJIN', 'MARIANI SUBIN'],
-    'BULAN SABIT MERAH MALAYSIA': ['MUHAMAD SYAFIQ JANUDI', 'SHAMRAN TAHIR', 'ROSAZLINEH SUMARIE', 'TRECY BARBARA JOHNIUS']
-};
-
-const GURU_SP = {
-    'BADMINTON': ['MUHAMAD SYAFIQ BIN JANUDI', 'ROSAZLINEH SUMARIE', 'SANISAH SUZIELA MUJIN', 'SHAMRAN TAHIR', 'SHAMSIAH FAUZI@UDI'],
-    'CATUR': ['MATRAUZEY LUJI', 'MOHD QUDDUS ROSLI', 'MARIANI SUBIN', 'SYLVIANA VIANA SAIKI'],
-    'BOLA BALING': ['MOHAMAD HELMIE BIN ABAB', 'ANDREW ARID', 'RIMEH GIWOD', 'TRECY BARBARA JOHNIUS']
-};
-
-const GURU_KP = {
-    'KELAB BAHASA MELAYU': ['SANISAH SUZIELA MUJIN', 'ANDREW ARID', 'RIMEH GIWOD', 'ROSAZLINEH SUMARIE'],
-    'KELAB BAHASA INGGERIS': ['MARIANI SUBIN', 'TRECY BARBARA JOHNIUS', 'SYLVIANA VIANA SAIKI', 'MOHD QUDDUS ROSLI'],
-    'KELAB STEM': ['MATRAUZEY LUJI', 'SHAMSIAH FAUZI@UDI', 'SHAMRAN TAHIR', 'MOHAMAD HELMIE BIN ABAB', 'MUHAMAD SYAFIQ BIN JANUDI']
-};
-
+const GURU_UB = { 'PENGAKAP KANAK-KANAK': ['MATRAUZEY LUJI', 'MOHD QUDDUS BIN ROSLI', 'SHAMSIAH FAUZI@UDI', 'RIMEH GIWOD'], 'TUNAS KADET REMAJA SEKOLAH': ['ANDREW ARID', 'MOHAMAD HELMIE BIN ABAB', 'SANISAH SUZIELA MUJIN', 'MARIANI SUBIN'], 'BULAN SABIT MERAH MALAYSIA': ['MUHAMAD SYAFIQ JANUDI', 'SHAMRAN TAHIR', 'ROSAZLINEH SUMARIE', 'TRECY BARBARA JOHNIUS'] };
+const GURU_SP = { 'BADMINTON': ['MUHAMAD SYAFIQ BIN JANUDI', 'ROSAZLINEH SUMARIE', 'SANISAH SUZIELA MUJIN', 'SHAMRAN TAHIR', 'SHAMSIAH FAUZI@UDI'], 'CATUR': ['MATRAUZEY LUJI', 'MOHD QUDDUS ROSLI', 'MARIANI SUBIN', 'SYLVIANA VIANA SAIKI'], 'BOLA BALING': ['MOHAMAD HELMIE BIN ABAB', 'ANDREW ARID', 'RIMEH GIWOD', 'TRECY BARBARA JOHNIUS'] };
+const GURU_KP = { 'KELAB BAHASA MELAYU': ['SANISAH SUZIELA MUJIN', 'ANDREW ARID', 'RIMEH GIWOD', 'ROSAZLINEH SUMARIE'], 'KELAB BAHASA INGGERIS': ['MARIANI SUBIN', 'TRECY BARBARA JOHNIUS', 'SYLVIANA VIANA SAIKI', 'MOHD QUDDUS ROSLI'], 'KELAB STEM': ['MATRAUZEY LUJI', 'SHAMSIAH FAUZI@UDI', 'SHAMRAN TAHIR', 'MOHAMAD HELMIE BIN ABAB', 'MUHAMAD SYAFIQ BIN JANUDI'] };
 let counterUB = { 'PENGAKAP KANAK-KANAK': 0, 'TUNAS KADET REMAJA SEKOLAH': 0, 'BULAN SABIT MERAH MALAYSIA': 0 };
 let counterSP = { 'BADMINTON': 0, 'CATUR': 0, 'BOLA BALING': 0 };
 let counterKP = { 'KELAB BAHASA MELAYU': 0, 'KELAB BAHASA INGGERIS': 0, 'KELAB STEM': 0 };
-
-const infoUnit = {
-    'UB': { color: '#3498db', units: Object.keys(GURU_UB), counters: counterUB, data: GURU_UB },
-    'KP': { color: '#e67e22', units: Object.keys(GURU_KP), counters: counterKP, data: GURU_KP },
-    'SP': { color: '#27ae60', units: Object.keys(GURU_SP), counters: counterSP, data: GURU_SP }
-};
-
-const tarikhInput = [
-    '2026-01-28', '2026-02-04', '2026-02-25', '2026-03-04', '2026-03-11', 
-    '2026-04-01', '2026-04-08', '2026-04-15', '2026-04-22', '2026-04-29', 
-    '2026-05-06', '2026-05-20', '2026-06-10', '2026-06-17', '2026-06-24', 
-    '2026-07-01', '2026-07-08', '2026-07-15', '2026-07-22', '2026-07-29', 
-    '2026-08-05', '2026-08-12', '2026-08-26', '2026-09-09', '2026-09-23', 
-    '2026-09-30', '2026-10-07', '2026-10-14', '2026-10-21', '2026-10-28'
-];
-
+const infoUnit = { 'UB': { color: '#3498db', units: Object.keys(GURU_UB), counters: counterUB, data: GURU_UB }, 'KP': { color: '#e67e22', units: Object.keys(GURU_KP), counters: counterKP, data: GURU_KP }, 'SP': { color: '#27ae60', units: Object.keys(GURU_SP), counters: counterSP, data: GURU_SP } };
+const tarikhInput = ['2026-01-28', '2026-02-04', '2026-02-25', '2026-03-04', '2026-03-11', '2026-04-01', '2026-04-08', '2026-04-15', '2026-04-22', '2026-04-29', '2026-05-06', '2026-05-20', '2026-06-10', '2026-06-17', '2026-06-24', '2026-07-01', '2026-07-08', '2026-07-15', '2026-07-22', '2026-07-29', '2026-08-05', '2026-08-12', '2026-08-26', '2026-09-09', '2026-09-23', '2026-09-30', '2026-10-07', '2026-10-14', '2026-10-21', '2026-10-28'];
 const allEvents = [];
 let giliranKategori = ['UB', 'KP', 'SP'];
 let indexGiliran = 0;
-
 tarikhInput.forEach(tarikh => {
     const katKey = giliranKategori[indexGiliran];
     const katInfo = infoUnit[katKey];
@@ -169,7 +101,6 @@ tarikhInput.forEach(tarikh => {
     });
     indexGiliran = (indexGiliran + 1) % 3;
 });
-
 document.addEventListener('DOMContentLoaded', function() {
     var calendarEl = document.getElementById('calendar');
     var calendar = new FullCalendar.Calendar(calendarEl, {
@@ -192,10 +123,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     calendar.render();
 });
-
 function closeModal() { document.getElementById('eventModal').style.display = "none"; }
-window.onclick = function(event) { if (event.target == document.getElementById('eventModal')) closeModal(); }
 </script>
-
 </body>
 </html>
