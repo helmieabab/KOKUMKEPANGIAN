@@ -3,118 +3,133 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Data Ahli Kokurikulum - SK Kepangian</title>
+    <title>Data Keahlian Murid - SK Kepangian</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
         body { font-family: 'Inter', sans-serif; background: #f8fafc; }
-        @media print {
-            .no-print { display: none !important; }
-            .print-area { display: block !important; padding: 0 !important; margin: 0 !important; }
-            body { background: white; }
-        }
+        .unit-card { transition: transform 0.2s; }
+        .unit-card:hover { transform: translateY(-5px); }
+        @media print { .no-print { display: none; } }
     </style>
 </head>
-<body class="p-4 md:p-10">
+<body class="py-8">
 
-    <div class="max-w-4xl mx-auto no-print">
-        <a href="index.html" class="text-blue-900 font-bold mb-6 inline-block">⬅️ KEMBALI KE MENU UTAMA</a>
-        
-        <div class="bg-white p-6 rounded-2xl shadow-lg border-t-4 border-blue-900 mb-10 text-center">
-            <h1 class="text-2xl font-bold text-blue-900 uppercase mb-6">Pangkalan Data Ahli Kokurikulum</h1>
-            
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <button onclick="showSubMenu('ub')" class="bg-blue-800 text-white p-4 rounded-xl font-bold hover:bg-blue-950 transition">UNIT BERUNIFORM</button>
-                <button onclick="showSubMenu('sukan')" class="bg-amber-600 text-white p-4 rounded-xl font-bold hover:bg-amber-700 transition">SUKAN & PERMAINAN</button>
-                <button onclick="showSubMenu('kelab')" class="bg-emerald-700 text-white p-4 rounded-xl font-bold hover:bg-emerald-800 transition">KELAB & PERSATUAN</button>
-            </div>
-
-            <div id="subMenu" class="mt-8 grid grid-cols-2 md:grid-cols-4 gap-3 hidden">
+    <div class="max-w-7xl mx-auto px-4 mb-8">
+        <div class="flex flex-col md:flex-row md:justify-between md:items-center gap-4 bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
+            <div class="flex items-center gap-4">
+                <img src="https://i.postimg.cc/kVCz4Wgj/logo-sk-kepangian.png" alt="Logo" class="w-16 h-16">
+                <div>
+                    <h1 class="text-2xl font-bold text-blue-900 uppercase">Data Keahlian Murid</h1>
+                    <p class="text-sm text-amber-600 font-semibold uppercase tracking-wider">SK Kepangian Ranau</p>
                 </div>
+            </div>
+            <div class="flex gap-2 no-print">
+                <a href="index.html" class="bg-slate-100 hover:bg-slate-200 text-slate-700 px-4 py-2 rounded-lg font-bold text-sm transition uppercase">
+                    🏠 Menu Utama
+                </a>
+                <button onclick="window.print()" class="bg-blue-900 hover:bg-black text-white px-4 py-2 rounded-lg font-bold text-sm transition uppercase">
+                    🖨️ Cetak Senarai
+                </button>
+            </div>
         </div>
     </div>
 
-    <div id="displayArea" class="max-w-4xl mx-auto bg-white p-8 md:p-12 rounded-xl shadow-2xl border-2 border-gray-200 hidden print-area">
-        <div class="text-center mb-8 border-b-4 border-double border-blue-900 pb-6">
-            <img src="https://i.postimg.cc/kVCz4Wgj/logo-sk-kepangian.png" alt="Logo" class="w-20 mx-auto mb-3">
-            <h2 class="text-xl font-bold text-blue-900 uppercase">Sekolah Kebangsaan Kepangian Ranau</h2>
-            <h3 id="printUnitName" class="text-lg font-bold text-amber-700 mt-1 uppercase italic"></h3>
-            <p id="printTeachers" class="text-xs font-semibold text-gray-600 mt-2 uppercase"></p>
+    <div id="dataContainer" class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         </div>
-
-        <table class="w-full border-collapse border border-gray-800">
-            <thead>
-                <tr class="bg-gray-100">
-                    <th class="border border-gray-800 p-2 w-12">BIL</th>
-                    <th class="border border-gray-800 p-2 text-left">NAMA PENUH MURID</th>
-                    <th class="border border-gray-800 p-2 w-20">TAHUN</th>
-                </tr>
-            </thead>
-            <tbody id="memberTableBody">
-                </tbody>
-        </table>
-
-        <div class="mt-8 no-print text-center">
-            <button onclick="window.print()" class="bg-black text-white px-8 py-3 rounded-full font-bold shadow-lg">🖨️ CETAK SENARAI INI (PDF)</button>
-        </div>
-    </div>
 
     <script>
-        const kokumData = {
-            ub: {
-                "PENGAKAP": { names: [{n:"MOHD AYDEN", k:"3"}, {n:"NAURA", k:"3"}, {n:"SHE RIEYANA", k:"3"}, {n:"ARYA ARIANA", k:"3"}, {n:"STEFEN", k:"3"}, {n:"Fredyano Owen Fredoline", k:"4"}, {n:"Drakee Beilyrone", k:"4"}, {n:"Michorward Courve Clarence", k:"4"}, {n:"Ezraleo Edward Micklos", k:"4"}, {n:"Elysia Juidi", k:"4"}, {n:"Freshly Vallent Hezrin", k:"4"}, {n:"Dynaline Saidin", k:"4"}, {n:"Alver Aiseiro Indro", k:"5"}, {n:"Melbourne Maddox Mitchel", k:"5"}, {n:"Dasewentworth Clarence", k:"6"}, {n:"Nelvin Nefrison Naire", k:"6"}], teachers: "Guru Penasihat: Semua Guru Pengakap" },
-                "BSMM": { names: [{n:"YORICOLEE", k:"3"}, {n:"IRMAYSARAH", k:"3"}, {n:"CHRISTAL", k:"3"}, {n:"ANGENI", k:"3"}, {n:"ALFAN", k:"3"}, {n:"CALVIN", k:"3"}, {n:"Arenley Adrell Elerry Roye", k:"4"}, {n:"Mohd Al Wafiq Afiq Abdullah", k:"4"}, {n:"Muhd Zaal Syahkiz Abdullah", k:"4"}, {n:"Afiqah Azanney Rezileh", k:"4"}, {n:"Haziedah", k:"4"}, {n:"Eve Elsie Hilary", k:"4"}, {n:"Dympna Eunah Selverius", k:"4"}, {n:"Herra Reverra Rajan", k:"5"}, {n:"Aiver Aiseiro Indro", k:"5"}, {n:"QAMARUL HAFIZ BIN MOHD QUDDUS", k: "5"}, {n:"Dareen Beilyrone", k:"6"}, {n:"Deyanna Emerry Selverius", k:"6"}, {n:"Nur Syaidatul Syafina Isna Artis", k:"6"}, {n:"Crystalinna Dady@Jaidy", k:"6"}], teachers: "Guru Penasihat: Semua Guru BSMM" },
-                "TKRS": { names: [{n:"EZROY", k:"3"}, {n:"AMERA", k:"3"}, {n:"AMBER", k:"3"}, {n:"QUENCYNOVIC", k:"3"}, {n:"NEKHO", k:"3"}, {n:"Fidel Marchel Fazly", k:"4"}, {n:"Nevier Chirst Naire", k:"4"}, {n:"Adam Christdec Hendry", k:"4"}, {n:"Fasha Vanessa Jinus", k:"4"}, {n:"Eva Eliza Hilary", k:"4"}, {n:"Riana Saibit", k:"4"}, {n:"Glenn Dilton George", k:"5"}, {n:"Wellen Alex Nor Vejy", k:"5"}, {n: "Scha Avarella Larry", k: "6"}, {n: "Aldree K.Lorince", k: "6"}, {n: "Junior Adrian Jidak", k: "6"}, {n: "Amber Eve Cristalova Anthony", k: "6"}, {n: "Ardila Jonen", k: "6"}, {n: "Syeldia Ridyana Sem", k: "6"}], teachers: "Guru Penasihat: Semua Guru TKRS" }
-            },
-            sukan: {
-                "BADMINTON": { names: [{n:"YORICOLEE", k:"3"}, {n:"NAURA", k:"3"}, {n:"AMBER", k:"3"}, {n:"ANGENI", k:"3"}, {n:"ALFAN", k:"3"}, {n:"Arenley Adriell Elerry Roye", k:"4"}, {n:"Mohd Al Wafiq Afiq Abdullah", k:"4"}, {n:"Michorward Courve Clerance", k:"4"}, {n:"Elysia Juidi", k:"4"}, {n:"Afiqah Azianney Rezileh", k:"4"}, {n:"Dynaline Saidin", k:"4"}, {n:"Herra Reverra Rajan", k:"5"}, {n:"Alver Aiseiro Indro", k:"5"}, {n:"Ardila Jonen", k:"6"}, {n:"Adrian Junior Jidak", k:"6"}, {n:"Deyana Emerry Selverius", k:"6"}, {n:"Adlree K.Lorince", k:"6"}, {n:"Shelydia Ridyana Sem", k: "6"}], teachers: "Guru Penasihat: Penyelaras Badminton" },
-                "BOLA BALING": { names: [{n:"MOHD AYDEN", k:"3"}, {n:"AMERA", k:"3"}, {n:"SHE RIEYANA", k:"3"}, {n:"ARYA ARIANA", k:"3"}, {n:"NEKHO", k:"3"}, {n:"Fidel Marchel Fazly", k:"4"}, {n:"Nevier Christ Naire", k:"4"}, {n:"Drakee Beilyrone", k:"4"}, {n:"Ezraleo Edward Micklos", k:"4"}, {n:"Fasha Vanessa Jinus", k:"4"}, {n:"Freshly Vallent Hezrin", k:"4"}, {n:"Riana Saibit", k:"4"}, {n:"Glenn Dilton George", k:"5"}, {n:"QAMARUL HAFIZ BIN MOHD QUDDUS", k:"5"}, {n:"Dase Wentworth Clarence", k:"6"}, {n:"Nelven Neffrison Naire", k:"6"}, {n: "Amber Eve Cristalova Anthony", k: "6"}, {n: "Scha Avariella Larry", k: "6"}], teachers: "Guru Penasihat: Penyelaras Bola Baling" },
-                "CATUR": { names: [{n:"EZROY", k:"3"}, {n:"IRMAYSARAH", k:"3"}, {n:"CHRISTAL", k:"3"}, {n:"QUENCYNOVIC", k:"3"}, {n:"STEFEN", k:"3"}, {n:"CALVIN", k:"3"}, {n:"Fredayanon Owen Fredoline", k:"4"}, {n:"Mohd Zaal Syahkiz Abdullah", k:"4"}, {n:"Adam Christdec Hendry", k:"4"}, {n:"Eva Eliza Hilary", k:"4"}, {n:"Haziedah", k:"4"}, {n:"Eve Elsie Hilary", k:"4"}, {n:"Dympna Eunah Selverius", k:"4"}, {n:"Avionna Michelle Clarence", k:"4"}, {n:"Wallen Alex Nor Vejy", k:"5"}, {n:"Mealbourne Maddox Mitchel", k:"5"}, {n:"Dareen Beilyrone", k:"6"}, {n:"Nur Shaidatul Shafina Isna Artis", k:"6"}, {n: "Crystalinna Dady@Jaidy", k: "6"}, {n: "Micheel Ajum", k: "6"}], teachers: "Guru Penasihat: Penyelaras Catur" }
-            },
-            kelab: {
-                "BAHASA MELAYU": { names: [{n:"MOHD AYDEN", k:"3"}, {n:"IRMAYSARAH", k:"3"}, {n:"SHE RIEYANA", k:"3"}, {n:"ARYA ARIANA", k:"3"}, {n:"NEKHO", k:"3"}, {n:"Drake Beilyrone", k:"4"}, {n:"Adam Chrisdec Hendry", k:"4"}, {n:"Avionna Michelle Binti Rolance", k:"4"}, {n:"Nevier Christ Naire", k:"4"}, {n:"Afiqah Azzanney Binti Rezileh", k:"4"}, {n:"Elysia Juidi", k:"4"}, {n:"Dynaline Saidin", k:"4"}, {n:"Melbourne Maddox", k:"5"}, {n:"Herra Reverra Rajan", k:"5"}, {n:"Shelydia Ridyana Sem", k: "6"}, {n: "Dase wentworth Clarence", k: "6"}, {n: "Darren Beilyrone", k: "6"}, {n: "Micheel Ajum", k: "6"}], teachers: "Guru Penasihat: Penyelaras Bahasa Melayu" },
-                "BAHASA INGGERIS": { names: [{n:"YORICOLEE", k:"3"}, {n:"AMERA", k:"3"}, {n:"CHRISTAL", k:"3"}, {n:"ANGENI", k:"3"}, {n:"ALFAN", k:"3"}, {n:"Fredano Owen Fredoline", k:"4"}, {n:"Riana Saibit", k:"4"}, {n:"Ezraleo Edward Micklos", k:"4"}, {n:"Fasha Vanassa Jinus", k:"4"}, {n:"Fidel Marchel Fazly", k:"4"}, {n:"Haeziedah", k:"4"}, {n:"Michoward Courve Clarence", k:"4"}, {n:"QAMARUL HAFIZ BIN MOHD QUDDUS", k:"5"}, {n:"Wallent", k: "5"}, {n: "Scha Aravilla Larry", k: "6"}, {n: "Aldree K.Lorince", k: "6"}, {n: "Amber Cristalova Anthony", k: "6"}, {n: "Emmerry Dyannah Selverius", k: "6"}], teachers: "Guru Penasihat: Penyelaras Bahasa Inggeris" },
-                "STEM": { names: [{n:"EZROY", k:"3"}, {n:"NAURA", k:"3"}, {n:"AMBER", k:"3"}, {n:"QUENCYNOVIC", k:"3"}, {n:"STEFEN", k:"3"}, {n:"CALVIN", k:"3"}, {n:"Arenley Adriell Elerry Roye", k:"4"}, {n:"Freshly Vellant Hezrin", k:"4"}, {n:"Mohd Zaal Syahkiz bin Abdullah", k:"4"}, {n:"Eva Eliza Hilary", k:"4"}, {n:"Eve Elsie Hilary", k:"4"}, {n:"Dympna Eunah Silverius", k:"4"}, {n:"Mohd Al Wafiq Afiq bin Abdullah", k:"4"}, {n:"Gleen Dilton George", k:"5"}, {n:"Alver Aiseiro Indro", k:"5"}, {n: "Adrian Junior Jidak", k: "6"}, {n: "Nelven Neffrison Naire", k: "6"}, {n: "Nur Shafina", k: "6"}, {n: "Ardila Jonen", k: "6"}, {n: "Crystalinna Dady@JAidy", k: "6"}], teachers: "Guru Penasihat: Penyelaras STEM" }
-            }
+        const database = {
+            pengakap: [
+                {n: "MOHD AYDEN", k: "3"}, {n: "NAURA", k: "3"}, {n: "SHE RIEYANA", k: "3"}, {n: "ARYA ARIANA", k: "3"}, {n: "STEFEN", k: "3"},
+                {n: "Fredyano Owen Fredoline", k: "4"}, {n: "Drakee Beilyrone", k: "4"}, {n: "Michorward Courve Clarence", k: "4"}, {n: "Ezraleo Edward Micklos", k: "4"}, {n: "Elysia Juidi", k: "4"}, {n: "Freshly Vallent Hezrin", k: "4"}, {n: "Dynaline Saidin", k: "4"}, 
+                {n: "Alver Aiseiro Indro", k: "5"}, {n: "Melbourne Maddox Mitchel", k: "5"}, 
+                {n: "QAMARUL HAFIZ BIN MOHD QUDDUS", k: "5"},
+                {n: "Dasewentworth Clarence", k: "6"}, {n: "Nelvin Nefrison Naire", k: "6"}
+            ],
+            bsmm: [
+                {n: "YORICOLEE", k: "3"}, {n: "IRMAYSARAH", k: "3"}, {n: "CHRISTAL", k: "3"}, {n: "ANGENI", k: "3"}, {n: "ALFAN", k: "3"}, {n: "CALVIN", k: "3"},
+                {n: "Arenley Adrell Elerry Roye", k: "4"}, {n: "Mohd Al Wafiq Afiq Abdullah", k: "4"}, {n: "Muhd Zaal Syahkiz Abdullah", k: "4"}, {n: "Afiqah Azanney Rezileh", k: "4"}, {n: "Haziedah", k: "4"}, {n: "Eve Elsie Hilary", k: "4"}, {n: "Dympna Eunah Selverius", k: "4"}, 
+                {n: "Herra Reverra Rajan", k: "5"}, {n: "Aiver Aiseiro Indro", k: "5"}, 
+                {n: "Dareen Beilyrone", k: "6"}, {n: "Deyanna Emerry Selverius", k: "6"}, {n: "Nur Syaidatul Syafina Isna Artis", k: "6"}, {n: "Crystalinna Dady@Jaidy", k: "6"}
+            ],
+            tkrs: [
+                {n: "EZROY", k: "3"}, {n: "AMERA", k: "3"}, {n: "AMBER", k: "3"}, {n: "QUENCYNOVIC", k: "3"}, {n: "NEKHO", k: "3"},
+                {n: "Fidel Marchel Fazly", k: "4"}, {n: "Nevier Chirst Naire", k: "4"}, {n: "Adam Christdec Hendry", k: "4"}, {n: "Fasha Vanessa Jinus", k: "4"}, {n: "Eva Eliza Hilary", k: "4"}, {n: "Riana Saibit", k: "4"}, {n: "Glenn Dilton George", k: "5"}, {n: "Wellen Alex Nor Vejy", k: "5"}, {n: "Scha Avarella Larry", k: "6"}, {n: "Aldree K.Lorince", k: "6"}, {n: "Junior Adrian Jidak", k: "6"}, {n: "Amber Eve Cristalova Anthony", k: "6"}, {n: "Ardila Jonen", k: "6"}, {n: "Syeldia Ridyana Sem", k: "6"}
+            ],
+            badminton: [
+                {n: "YORICOLEE", k: "3"}, {n: "NAURA", k: "3"}, {n: "AMBER", k: "3"}, {n: "ANGENI", k: "3"}, {n: "ALFAN", k: "3"},
+                {n: "Arenley Adriell Elerry Roye", k: "4"}, {n: "Mohd Al Wafiq Afiq Abdullah", k: "4"}, {n: "Michorward Courve Clerance", k: "4"}, {n: "Elysia Juidi", k: "4"}, {n: "Afiqah Azianney Rezileh", k: "4"}, {n: "Dynaline Saidin", k: "4"}, {n: "Herra Reverra Rajan", k: "5"}, {n: "Alver Aiseiro Indro", k: "5"}, {n: "Ardila Jonen", k: "6"}, {n: "Adrian Junior Jidak", k: "6"}, {n: "Deyana Emerry Selverius", k: "6"}, {n: "Adlree K.Lorince", k: "6"}, {n: "Shelydia Ridyana Sem", k: "6"}
+            ],
+            bola_baling: [
+                {n: "MOHD AYDEN", k: "3"}, {n: "AMERA", k: "3"}, {n: "SHE RIEYANA", k: "3"}, {n: "ARYA ARIANA", k: "3"}, {n: "NEKHO", k: "3"},
+                {n: "Fidel Marchel Fazly", k: "4"}, {n: "Nevier Christ Naire", k: "4"}, {n: "Drakee Beilyrone", k: "4"}, {n: "Ezraleo Edward Micklos", k: "4"}, {n: "Fasha Vanessa Jinus", k: "4"}, {n: "Freshly Vallent Hezrin", k: "4"}, {n: "Riana Saibit", k: "4"}, {n: "Glenn Dilton George", k: "5"}, {n: "QAMARUL HAFIZ BIN MOHD QUDDUS", k: "5"}, {n: "Dase Wentworth Clarence", k: "6"}, {n: "Nelven Neffrison Naire", k: "6"}, {n: "Amber Eve Cristalova Anthony", k: "6"}, {n: "Scha Avariella Larry", k: "6"}
+            ],
+            catur: [
+                {n: "EZROY", k: "3"}, {n: "IRMAYSARAH", k: "3"}, {n: "CHRISTAL", k: "3"}, {n: "QUENCYNOVIC", k: "3"}, {n: "STEFEN", k: "3"}, {n: "CALVIN", k: "3"},
+                {n: "Fredayanon Owen Fredoline", k: "4"}, {n: "Mohd Zaal Syahkiz Abdullah", k: "4"}, {n: "Adam Christdec Hendry", k: "4"}, {n: "Eva Eliza Hilary", k: "4"}, {n: "Haziedah", k: "4"}, {n: "Eve Elsie Hilary", k: "4"}, {n: "Dympna Eunah Selverius", k: "4"}, {n: "Avionna Michelle Clarence", k: "4"}, {n: "Wallen Alex Nor Vejy", k: "5"}, {n: "Mealbourne Maddox Mitchel", k: "5"}, {n: "Dareen Beilyrone", k: "6"}, {n: "Nur Shaidatul Shafina Isna Artis", k: "6"}, {n: "Crystalinna Dady@Jaidy", k: "6"}, {n: "Micheel Ajum", k: "6"}
+            ],
+            bm: [
+                {n: "MOHD AYDEN", k: "3"}, {n: "IRMAYSARAH", k: "3"}, {n: "SHE RIEYANA", k: "3"}, {n: "ARYA ARIANA", k: "3"}, {n: "NEKHO", k: "3"},
+                {n: "Drake Beilyrone", k: "4"}, {n: "Adam Chrisdec Hendry", k: "4"}, {n: "Avionna Michelle Binti Rolance", k: "4"}, {n: "Nevier Christ Naire", k: "4"}, {n: "Afiqah Azzanney Binti Rezileh", k: "4"}, {n: "Elysia Juidi", k: "4"}, {n: "Dynaline Saidin", k: "4"}, {n: "Melbourne Maddox", k: "5"}, {n: "Herra Reverra Rajan", k: "5"}, {n: "Shelydia Ridyana Sem", k: "6"}, {n: "Dase wentworth Clarence", k: "6"}, {n: "Darren Beilyrone", k: "6"}, {n: "Micheel Ajum", k: "6"}
+            ],
+            bi: [
+                {n: "YORICOLEE", k: "3"}, {n: "AMERA", k: "3"}, {n: "CHRISTAL", k: "3"}, {n: "ANGENI", k: "3"}, {n: "ALFAN", k: "3"},
+                {n: "Fredano Owen Fredoline", k: "4"}, {n: "Riana Saibit", k: "4"}, {n: "Ezraleo Edward Micklos", k: "4"}, {n: "Fasha Vanassa Jinus", k: "4"}, {n: "Fidel Marchel Fazly", k: "4"}, {n: "Haeziedah", k: "4"}, {n: "Michoward Courve Clarence", k: "4"}, 
+                {n: "Wallent", k: "5"}, {n: "Scha Aravilla Larry", k: "6"}, {n: "Aldree K.Lorince", k: "6"}, {n: "Amber Cristalova Anthony", k: "6"}, {n: "Emmerry Dyannah Selverius", k: "6"}
+            ],
+            stem: [
+                {n: "EZROY", k: "3"}, {n: "NAURA", k: "3"}, {n: "AMBER", k: "3"}, {n: "QUENCYNOVIC", k: "3"}, {n: "STEFEN", k: "3"}, {n: "CALVIN", k: "3"},
+                {n: "Arenley Adriell Elerry Roye", k: "4"}, {n: "Freshly Vellant Hezrin", k: "4"}, {n: "Mohd Zaal Syahkiz bin Abdullah", k: "4"}, {n: "Eva Eliza Hilary", k: "4"}, {n: "Eve Elsie Hilary", k: "4"}, {n: "Dympna Eunah Silverius", k: "4"}, {n: "Mohd Al Wafiq Afiq bin Abdullah", k: "4"}, {n: "Gleen Dilton George", k: "5"}, {n: "Alver Aiseiro Indro", k: "5"}, {n: "Adrian Junior Jidak", k: "6"}, {n: "Nelven Neffrison Naire", k: "6"}, {n: "Nur Shafina", k: "6"}, {n: "Ardila Jonen", k: "6"}, {n: "Crystalinna Dady@JAidy", k: "6"}
+            ]
         };
 
-        function showSubMenu(cat) {
-            const menu = document.getElementById('subMenu');
-            menu.innerHTML = '';
-            menu.classList.remove('hidden');
-            
-            for (let unit in kokumData[cat]) {
-                const btn = document.createElement('button');
-                btn.className = "bg-white border-2 border-gray-200 p-3 rounded-lg text-xs font-bold hover:border-blue-900 hover:text-blue-900";
-                btn.innerText = unit;
-                btn.onclick = () => showMembers(cat, unit);
-                menu.appendChild(btn);
-            }
-        }
+        const unitDisplayNames = {
+            pengakap: "Pengakap Kanak-Kanak",
+            bsmm: "BSMM",
+            tkrs: "TKRS",
+            badminton: "Kelab Badminton",
+            bola_baling: "Kelab Bola Baling",
+            catur: "Kelab Catur",
+            bm: "Persatuan B. Melayu",
+            bi: "Persatuan B. Inggeris",
+            stem: "Kelab STEM"
+        };
 
-        function showMembers(cat, unit) {
-            const display = document.getElementById('displayArea');
-            const tableBody = document.getElementById('memberTableBody');
-            const unitName = document.getElementById('printUnitName');
-            const teachers = document.getElementById('printTeachers');
+        const container = document.getElementById('dataContainer');
 
-            display.classList.remove('hidden');
-            unitName.innerText = unit;
-            teachers.innerText = kokumData[cat][unit].teachers;
-            
-            tableBody.innerHTML = '';
-            kokumData[cat][unit].names.forEach((murid, idx) => {
-                const row = `
-                    <tr class="odd:bg-white even:bg-slate-50">
-                        <td class="border border-gray-800 p-2 text-center font-bold">${idx + 1}</td>
-                        <td class="border border-gray-800 p-2 font-bold uppercase">${murid.n}</td>
-                        <td class="border border-gray-800 p-2 text-center font-bold">${murid.k}</td>
-                    </tr>
-                `;
-                tableBody.innerHTML += row;
-            });
-            window.scrollTo({ top: display.offsetTop, behavior: 'smooth' });
-        }
+        Object.keys(database).forEach(unitKey => {
+            const students = database[unitKey];
+            let cardHtml = `
+                <div class="bg-white rounded-xl shadow-md border-t-4 border-blue-900 unit-card overflow-hidden">
+                    <div class="p-4 bg-slate-50 border-b">
+                        <h2 class="font-bold text-blue-900 uppercase text-sm">${unitDisplayNames[unitKey]}</h2>
+                        <p class="text-[10px] text-slate-500 font-bold uppercase">Jumlah: ${students.length} Orang</p>
+                    </div>
+                    <div class="p-4">
+                        <table class="w-full text-left">
+                            <thead>
+                                <tr class="text-[9px] text-slate-400 uppercase border-b">
+                                    <th class="py-1">Bil</th>
+                                    <th class="py-1">Nama Penuh</th>
+                                    <th class="py-1 text-center">Thn</th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-xs">
+                                ${students.map((m, i) => `
+                                    <tr class="border-b border-slate-50 hover:bg-amber-50">
+                                        <td class="py-2 text-slate-400 font-medium">${i+1}</td>
+                                        <td class="py-2 font-bold text-slate-700 uppercase">${m.n}</td>
+                                        <td class="py-2 text-center text-slate-600 font-bold">${m.k}</td>
+                                    </tr>
+                                `).join('')}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            `;
+            container.innerHTML += cardHtml;
+        });
     </script>
 </body>
 </html>
