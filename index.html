@@ -3,75 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HUB KOKUM | SK KEPANGIAN</title>
+    <title>Sistem Kokurikulum - SK Kepangian</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     <style>
-        body {
-            font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
+        body { font-family: 'Inter', sans-serif; background: #f8fafc; }
+        .menu-card { 
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid rgba(226, 232, 240, 0.8);
         }
-        .glass-card {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            border-radius: 2rem;
-            width: 100%;
-            max-width: 450px;
-            padding: 40px 20px;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-            text-align: center;
-        }
-        .link-btn {
-            display: block;
-            width: 100%;
-            padding: 18px;
-            margin-bottom: 15px;
-            background: #ffffff;
-            border: 2px solid #1e3a8a;
-            color: #1e3a8a;
-            border-radius: 12px;
-            font-weight: 700;
-            transition: all 0.3s ease;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-        .link-btn:hover {
-            background: #1e3a8a;
-            color: #ffffff;
-            transform: translateY(-3px);
-            box-shadow: 0 10px 15px -3px rgba(30, 58, 138, 0.3);
+        .menu-card:hover { 
+            transform: translateY(-8px);
+            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+            border-color: #1e3a8a;
         }
     </style>
 </head>
-<body>
+<body class="min-h-screen flex flex-col items-center justify-center p-6">
 
-    <div class="glass-card">
-        <img src="https://i.postimg.cc/kVCz4Wgj/logo-sk-kepangian.png" alt="Logo" class="w-24 mx-auto mb-6">
-        
-        <h1 class="text-2xl font-bold text-blue-900 mb-1">UNIT KOKURIKULUM</h1>
-        <p class="text-amber-600 font-semibold text-sm mb-8 tracking-widest uppercase">SK Kepangian Ranau</p>
-
-        <div class="space-y-4">
-            <a href="takwim.html" class="link-btn flex items-center justify-center gap-3">
-                📅 Takwim Kokurikulum 2026
-            </a>
-
-            <a href="datamurid.html" class="link-btn flex items-center justify-center gap-3">
-                📊 Data Murid
-            </a>
-            
-            <a href="laporan.html" class="link-btn flex items-center justify-center gap-3">
-                📝 Jana Laporan Mingguan
-            </a>
+    <div class="max-w-4xl w-full">
+        <div class="text-center mb-12">
+            <img src="https://i.postimg.cc/kVCz4Wgj/logo-sk-kepangian.png" alt="Logo SK Kepangian" class="w-28 h-28 mx-auto mb-6 drop-shadow-lg">
+            <h1 class="text-4xl font-extrabold text-blue-900 tracking-tight uppercase mb-2">Sistem Pengurusan Kokurikulum</h1>
+            <p class="text-amber-600 font-bold tracking-[0.3em] uppercase text-sm">SK Kepangian Ranau</p>
+            <div class="h-1.5 w-32 bg-blue-900 mx-auto mt-4 rounded-full"></div>
         </div>
 
-        <div class="mt-12 text-gray-400 text-xs">
-            &copy; 2026 SK Kepangian. <br> Diuruskan oleh Unit Kokurikulum.
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            
+            <a href="laporan.html" class="menu-card bg-white p-8 rounded-2xl flex flex-col items-center text-center group">
+                <div class="w-20 h-20 bg-blue-50 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-blue-900 transition-colors">
+                    <span class="text-4xl group-hover:scale-110 transition-transform">📝</span>
+                </div>
+                <h2 class="text-xl font-bold text-slate-800 mb-2 uppercase">Laporan Perjumpaan</h2>
+                <p class="text-slate-500 text-sm">Isi kehadiran murid, gambar aktiviti, dan jana laporan PDF dengan mudah.</p>
+            </a>
+
+            <a href="data.html" class="menu-card bg-white p-8 rounded-2xl flex flex-col items-center text-center group border-t-4 border-t-amber-500">
+                <div class="w-20 h-20 bg-amber-50 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-amber-500 transition-colors">
+                    <span class="text-4xl group-hover:scale-110 transition-transform">📊</span>
+                </div>
+                <h2 class="text-xl font-bold text-slate-800 mb-2 uppercase">Data Keahlian</h2>
+                <p class="text-slate-500 text-sm">Semak senarai nama murid mengikut unit Uniform, Kelab & Persatuan.</p>
+            </a>
+
+        </div>
+
+        <div class="mt-16 text-center text-slate-400 text-xs font-medium uppercase tracking-widest">
+            &copy; 2026 Pengurusan Kokurikulum SK Kepangian
         </div>
     </div>
 
