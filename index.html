@@ -3,143 +3,77 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sistem Dokumen KOKUM</title>
+    <title>HUB KOKUM | SK KEPANGIAN</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
         body {
-            font-family: 'Segoe UI', Arial, sans-serif;
-            background-color: #f4f7f6;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
             min-height: 100vh;
-            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
         }
-        .card {
-            background: white;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        .glass-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 2rem;
             width: 100%;
             max-width: 450px;
+            padding: 40px 20px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
             text-align: center;
         }
-        h2 { color: #2c3e50; margin-bottom: 25px; }
-        .section {
-            background: #f8f9fa;
-            padding: 20px;
-            border-radius: 10px;
-            margin-bottom: 20px;
-            border: 1px solid #e9ecef;
-        }
-        .btn {
+        .link-btn {
+            display: block;
             width: 100%;
-            padding: 12px;
-            border: none;
-            border-radius: 8px;
-            font-size: 16px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: 0.3s;
-            margin-top: 10px;
+            padding: 18px;
+            margin-bottom: 15px;
+            background: #ffffff;
+            border: 2px solid #1e3a8a;
+            color: #1e3a8a;
+            border-radius: 12px;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
-        .btn-download { background-color: #27ae60; color: white; }
-        .btn-download:hover { background-color: #219150; }
-        .btn-upload { background-color: #2980b9; color: white; }
-        .btn-upload:hover { background-color: #1f6391; }
-        .btn:disabled { background-color: #bdc3c7; cursor: not-allowed; }
-        
-        #statusMessage {
-            margin-top: 15px;
-            padding: 10px;
-            border-radius: 5px;
-            display: none;
-            font-size: 14px;
+        .link-btn:hover {
+            background: #1e3a8a;
+            color: #ffffff;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 15px -3px rgba(30, 58, 138, 0.3);
         }
-        input[type="file"] { margin-top: 10px; }
     </style>
 </head>
 <body>
 
-<div class="card">
-    <h2>📁 Portal Laporan KOKUM</h2>
-
-    <div class="section">
-        <p style="margin-top:0;"><strong>Langkah 1:</strong> Muat turun template laporan di bawah.</p>
-        <a href="TEMPLATE_LAPORAN.pdf" download="Template_Laporan_KOKUM.pdf">
-            <button class="btn btn-download">📥 Muat Turun PDF</button>
-        </a>
-    </div>
-
-    <div class="section">
-        <p style="margin-top:0;"><strong>Langkah 2:</strong> Upload laporan yang telah siap.</p>
-        <input type="file" id="fileInput" accept="application/pdf">
-        <button onclick="uploadFile()" id="uploadBtn" class="btn btn-upload">🚀 Hantar ke Google Drive</button>
+    <div class="glass-card">
+        <img src="https://i.postimg.cc/kVCz4Wgj/logo-sk-kepangian.png" alt="Logo" class="w-24 mx-auto mb-6">
         
-        <div id="statusMessage"></div>
+        <h1 class="text-2xl font-bold text-blue-900 mb-1">UNIT KOKURIKULUM</h1>
+        <p class="text-amber-600 font-semibold text-sm mb-8 tracking-widest uppercase">SK Kepangian Ranau</p>
+
+        <div class="space-y-4">
+            <a href="takwim.html" class="link-btn flex items-center justify-center gap-3">
+                📅 Takwim Kokurikulum 2026
+            </a>
+
+            <a href="datamurid.html" class="link-btn flex items-center justify-center gap-3">
+                📊 Data Murid
+            </a>
+            
+            <a href="laporan.html" class="link-btn flex items-center justify-center gap-3">
+                📝 Jana Laporan Mingguan
+            </a>
+        </div>
+
+        <div class="mt-12 text-gray-400 text-xs">
+            &copy; 2026 SK Kepangian. <br> Diuruskan oleh Unit Kokurikulum.
+        </div>
     </div>
-    
-    <p style="font-size: 12px; color: #7f8c8d;">Sistem KOKUM KEPANGIAN &copy; 2026</p>
-</div>
-
-<script>
-function uploadFile() {
-    const fileInput = document.getElementById('fileInput');
-    const status = document.getElementById('statusMessage');
-    const btn = document.getElementById('uploadBtn');
-    
-    // URL WEB APP ANDA
-    const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbzOIqF-vPXB1vn8DnzKhmhkCE8m7C-wydF16JKsv0FKCEyE6thbyhU6YRpuQRkkaVM1/exec"; 
-
-    if (fileInput.files.length === 0) {
-        alert("Sila pilih fail PDF dahulu!");
-        return;
-    }
-
-    const file = fileInput.files[0];
-    if (file.type !== "application/pdf") {
-        alert("Sila pilih fail dalam format PDF sahaja!");
-        return;
-    }
-
-    const reader = new FileReader();
-    
-    // Setup Loading UI
-    status.style.display = "block";
-    status.style.backgroundColor = "#fff3cd";
-    status.style.color = "#856404";
-    status.innerText = "⏳ Sedang menghantar... Sila tunggu.";
-    btn.disabled = true;
-
-    reader.onload = function(e) {
-        const base64 = e.target.result.split(',')[1];
-        const data = {
-            base64: base64,
-            contentType: file.type,
-            fileName: file.name
-        };
-
-        fetch(WEB_APP_URL, {
-            method: 'POST',
-            mode: 'no-cors', 
-            body: JSON.stringify(data)
-        })
-        .then(() => {
-            status.style.backgroundColor = "#d4edda";
-            status.style.color = "#155724";
-            status.innerText = "✅ BERJAYA! Fail telah masuk ke folder Drive.";
-            btn.disabled = false;
-            fileInput.value = ""; 
-        })
-        .catch(err => {
-            status.style.backgroundColor = "#f8d7da";
-            status.style.color = "#721c24";
-            status.innerText = "❌ RALAT: Sambungan gagal.";
-            btn.disabled = false;
-        });
-    };
-    reader.readAsDataURL(file);
-}
-</script>
 
 </body>
 </html>
