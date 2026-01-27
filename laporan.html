@@ -109,7 +109,31 @@
             </div>
         </div>
 
-        <button onclick="generateFullReport()" class="w-full bg-blue-900 text-amber-400 font-bold py-5 rounded-xl text-2xl shadow-xl hover:bg-black uppercase">JANA LAPORAN</button>
+        <button onclick="generateFullReport()" class="w-full bg-blue-900 text-amber-400 font-bold py-5 rounded-xl text-2xl shadow-xl hover:bg-black uppercase mb-10">JANA LAPORAN</button>
+
+        <div class="border-t-4 border-amber-500 pt-8 mt-4 bg-slate-50 p-6 rounded-xl">
+            <h3 class="text-lg font-bold text-blue-900 uppercase mb-4 text-center">Pusat Simpanan Fail PDF</h3>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-white p-4 rounded-lg shadow border border-gray-200 text-center">
+                    <p class="text-xs font-bold text-gray-500 uppercase mb-2">Template Laporan</p>
+                    <a href="TEMPLATE_LAPORAN.pdf" download="Template_Laporan_KOKUM.pdf">
+                        <button class="w-full bg-green-600 text-white font-bold py-3 rounded-lg hover:bg-green-700 transition uppercase text-sm">
+                            📥 Muat Turun PDF
+                        </button>
+                    </a>
+                </div>
+
+                <div class="bg-white p-4 rounded-lg shadow border border-gray-200 text-center">
+                    <p class="text-xs font-bold text-gray-500 uppercase mb-2">Hantar Ke Drive</p>
+                    <input type="file" id="pdfUploadInput" accept="application/pdf" class="text-xs mb-2 w-full">
+                    <button onclick="uploadPdfToDrive()" id="pdfBtn" class="w-full bg-blue-600 text-white font-bold py-3 rounded-lg hover:bg-blue-700 transition uppercase text-sm">
+                        🚀 Upload Fail
+                    </button>
+                    <p id="pdfStatus" class="text-[10px] font-bold mt-2 uppercase"></p>
+                </div>
+            </div>
+        </div>
     </div>
 
     <div id="attendanceModal" class="fixed inset-0 bg-black bg-opacity-60 hidden flex items-center justify-center no-print z-50 p-4">
@@ -167,11 +191,16 @@
         const database = {
             pengakap: [
                 {n: "MOHD AYDEN", k: "3"}, {n: "NAURA", k: "3"}, {n: "SHE RIEYANA", k: "3"}, {n: "ARYA ARIANA", k: "3"}, {n: "STEFEN", k: "3"},
-                {n: "Fredyano Owen Fredoline", k: "4"}, {n: "Drakee Beilyrone", k: "4"}, {n: "Michorward Courve Clarence", k: "4"}, {n: "Ezraleo Edward Micklos", k: "4"}, {n: "Elysia Juidi", k: "4"}, {n: "Freshly Vallent Hezrin", k: "4"}, {n: "Dynaline Saidin", k: "4"}, {n: "Alver Aiseiro Indro", k: "5"}, {n: "Melbourne Maddox Mitchel", k: "5"}, {n: "Dasewentworth Clarence", k: "6"}, {n: "Nelvin Nefrison Naire", k: "6"}
+                {n: "Fredyano Owen Fredoline", k: "4"}, {n: "Drakee Beilyrone", k: "4"}, {n: "Michorward Courve Clarence", k: "4"}, {n: "Ezraleo Edward Micklos", k: "4"}, {n: "Elysia Juidi", k: "4"}, {n: "Freshly Vallent Hezrin", k: "4"}, {n: "Dynaline Saidin", k: "4"}, 
+                {n: "Alver Aiseiro Indro", k: "5"}, {n: "Melbourne Maddox Mitchel", k: "5"}, 
+                {n: "QAMARUL HAFIZ BIN MOHD QUDDUS", k: "5"}, // DIPINDAHKAN KE SINI
+                {n: "Dasewentworth Clarence", k: "6"}, {n: "Nelvin Nefrison Naire", k: "6"}
             ],
             bsmm: [
                 {n: "YORICOLEE", k: "3"}, {n: "IRMAYSARAH", k: "3"}, {n: "CHRISTAL", k: "3"}, {n: "ANGENI", k: "3"}, {n: "ALFAN", k: "3"}, {n: "CALVIN", k: "3"},
-                {n: "Arenley Adrell Elerry Roye", k: "4"}, {n: "Mohd Al Wafiq Afiq Abdullah", k: "4"}, {n: "Muhd Zaal Syahkiz Abdullah", k: "4"}, {n: "Afiqah Azanney Rezileh", k: "4"}, {n: "Haziedah", k: "4"}, {n: "Eve Elsie Hilary", k: "4"}, {n: "Dympna Eunah Selverius", k: "4"}, {n: "Herra Reverra Rajan", k: "5"}, {n: "Aiver Aiseiro Indro", k: "5"}, {n: "QAMARUL HAFIZ BIN MOHD QUDDUS", k: "5"}, {n: "Dareen Beilyrone", k: "6"}, {n: "Deyanna Emerry Selverius", k: "6"}, {n: "Nur Syaidatul Syafina Isna Artis", k: "6"}, {n: "Crystalinna Dady@Jaidy", k: "6"}
+                {n: "Arenley Adrell Elerry Roye", k: "4"}, {n: "Mohd Al Wafiq Afiq Abdullah", k: "4"}, {n: "Muhd Zaal Syahkiz Abdullah", k: "4"}, {n: "Afiqah Azanney Rezileh", k: "4"}, {n: "Haziedah", k: "4"}, {n: "Eve Elsie Hilary", k: "4"}, {n: "Dympna Eunah Selverius", k: "4"}, 
+                {n: "Herra Reverra Rajan", k: "5"}, {n: "Aiver Aiseiro Indro", k: "5"}, 
+                {n: "Dareen Beilyrone", k: "6"}, {n: "Deyanna Emerry Selverius", k: "6"}, {n: "Nur Syaidatul Syafina Isna Artis", k: "6"}, {n: "Crystalinna Dady@Jaidy", k: "6"}
             ],
             tkrs: [
                 {n: "EZROY", k: "3"}, {n: "AMERA", k: "3"}, {n: "AMBER", k: "3"}, {n: "QUENCYNOVIC", k: "3"}, {n: "NEKHO", k: "3"},
@@ -183,7 +212,9 @@
             ],
             bola_baling: [
                 {n: "MOHD AYDEN", k: "3"}, {n: "AMERA", k: "3"}, {n: "SHE RIEYANA", k: "3"}, {n: "ARYA ARIANA", k: "3"}, {n: "NEKHO", k: "3"},
-                {n: "Fidel Marchel Fazly", k: "4"}, {n: "Nevier Christ Naire", k: "4"}, {n: "Drakee Beilyrone", k: "4"}, {n: "Ezraleo Edward Micklos", k: "4"}, {n: "Fasha Vanessa Jinus", k: "4"}, {n: "Freshly Vallent Hezrin", k: "4"}, {n: "Riana Saibit", k: "4"}, {n: "Glenn Dilton George", k: "5"}, {n: "QAMARUL HAFIZ BIN MOHD QUDDUS", k: "5"}, {n: "Dase Wentworth Clarence", k: "6"}, {n: "Nelven Neffrison Naire", k: "6"}, {n: "Amber Eve Cristalova Anthony", k: "6"}, {n: "Scha Avariella Larry", k: "6"}
+                {n: "Fidel Marchel Fazly", k: "4"}, {n: "Nevier Christ Naire", k: "4"}, {n: "Drakee Beilyrone", k: "4"}, {n: "Ezraleo Edward Micklos", k: "4"}, {n: "Fasha Vanessa Jinus", k: "4"}, {n: "Freshly Vallent Hezrin", k: "4"}, {n: "Riana Saibit", k: "4"}, {n: "Glenn Dilton George", k: "5"}, 
+                {n: "QAMARUL HAFIZ BIN MOHD QUDDUS", k: "5"}, // KEKAL DI BOLA BALING
+                {n: "Dase Wentworth Clarence", k: "6"}, {n: "Nelven Neffrison Naire", k: "6"}, {n: "Amber Eve Cristalova Anthony", k: "6"}, {n: "Scha Avariella Larry", k: "6"}
             ],
             catur: [
                 {n: "EZROY", k: "3"}, {n: "IRMAYSARAH", k: "3"}, {n: "CHRISTAL", k: "3"}, {n: "QUENCYNOVIC", k: "3"}, {n: "STEFEN", k: "3"}, {n: "CALVIN", k: "3"},
@@ -195,7 +226,8 @@
             ],
             bi: [
                 {n: "YORICOLEE", k: "3"}, {n: "AMERA", k: "3"}, {n: "CHRISTAL", k: "3"}, {n: "ANGENI", k: "3"}, {n: "ALFAN", k: "3"},
-                {n: "Fredano Owen Fredoline", k: "4"}, {n: "Riana Saibit", k: "4"}, {n: "Ezraleo Edward Micklos", k: "4"}, {n: "Fasha Vanassa Jinus", k: "4"}, {n: "Fidel Marchel Fazly", k: "4"}, {n: "Haeziedah", k: "4"}, {n: "Michoward Courve Clarence", k: "4"}, {n: "QAMARUL HAFIZ BIN MOHD QUDDUS", k: "5"}, {n: "Wallent", k: "5"}, {n: "Scha Aravilla Larry", k: "6"}, {n: "Aldree K.Lorince", k: "6"}, {n: "Amber Cristalova Anthony", k: "6"}, {n: "Emmerry Dyannah Selverius", k: "6"}
+                {n: "Fredano Owen Fredoline", k: "4"}, {n: "Riana Saibit", k: "4"}, {n: "Ezraleo Edward Micklos", k: "4"}, {n: "Fasha Vanassa Jinus", k: "4"}, {n: "Fidel Marchel Fazly", k: "4"}, {n: "Haeziedah", k: "4"}, {n: "Michoward Courve Clarence", k: "4"}, 
+                {n: "Wallent", k: "5"}, {n: "Scha Aravilla Larry", k: "6"}, {n: "Aldree K.Lorince", k: "6"}, {n: "Amber Cristalova Anthony", k: "6"}, {n: "Emmerry Dyannah Selverius", k: "6"}
             ],
             stem: [
                 {n: "EZROY", k: "3"}, {n: "NAURA", k: "3"}, {n: "AMBER", k: "3"}, {n: "QUENCYNOVIC", k: "3"}, {n: "STEFEN", k: "3"}, {n: "CALVIN", k: "3"},
@@ -208,9 +240,7 @@
         function updateFileCount() {
             const input = document.getElementById('imageInput');
             const display = document.getElementById('fileCount');
-            if(input.files.length > 0) {
-                display.innerText = input.files.length + " gambar dipilih.";
-            }
+            if(input.files.length > 0) display.innerText = input.files.length + " gambar dipilih.";
         }
 
         function showAttendanceList() {
@@ -223,10 +253,7 @@
                 const div = document.createElement('div');
                 div.className = "flex items-center p-3 hover:bg-slate-50 border-b";
                 const isChecked = selectedAttendance.includes(murid.n) ? 'checked' : '';
-                div.innerHTML = `
-                    <input type="checkbox" id="m-${index}" value="${murid.n}" ${isChecked} onchange="updateStats()" class="w-6 h-6 mr-4">
-                    <label for="m-${index}" class="text-sm font-bold text-gray-700">${murid.n} (Tahun ${murid.k})</label>
-                `;
+                div.innerHTML = `<input type="checkbox" id="m-${index}" value="${murid.n}" ${isChecked} onchange="updateStats()" class="w-6 h-6 mr-4"><label for="m-${index}" class="text-sm font-bold text-gray-700">${murid.n} (Tahun ${murid.k})</label>`;
                 listContainer.appendChild(div);
             });
             document.getElementById('attendanceModal').classList.remove('hidden');
@@ -264,22 +291,14 @@
             document.getElementById('rObj').innerText = document.getElementById('progObj').value;
             document.getElementById('rAct').innerText = document.getElementById('progAct').value;
             document.getElementById('rReflect').innerText = document.getElementById('progReflect').value;
-
             document.getElementById('rUnitAttend').innerText = fullUnitName;
             document.getElementById('rMeetingAttend').innerText = "PERJUMPAAN KALI KE-" + document.getElementById('meetingNum').value;
             const tableBody = document.getElementById('rAttendanceTable');
             tableBody.innerHTML = '';
             database[unit].forEach((murid, idx) => {
-                const row = `
-                    <tr>
-                        <td class="border-2 border-gray-800 p-2 text-center font-bold">${idx+1}</td>
-                        <td class="border-2 border-gray-800 p-2 font-bold uppercase">${murid.n}</td>
-                        <td class="border-2 border-gray-800 p-2 text-center font-bold">${murid.k}</td>
-                        <td class="border-2 border-gray-800 p-2 text-center font-bold text-xl">${selectedAttendance.includes(murid.n) ? '/' : ''}</td>
-                    </tr>`;
+                const row = `<tr><td class="border-2 border-gray-800 p-2 text-center font-bold">${idx+1}</td><td class="border-2 border-gray-800 p-2 font-bold uppercase">${murid.n}</td><td class="border-2 border-gray-800 p-2 text-center font-bold">${murid.k}</td><td class="border-2 border-gray-800 p-2 text-center font-bold text-xl">${selectedAttendance.includes(murid.n) ? '/' : ''}</td></tr>`;
                 tableBody.innerHTML += row;
             });
-
             const images = document.getElementById('imageInput').files;
             const imgContainer = document.getElementById('rImages');
             imgContainer.innerHTML = '';
@@ -288,10 +307,39 @@
                 reader.onload = (e) => { imgContainer.innerHTML += `<img src="${e.target.result}">`; }
                 reader.readAsDataURL(file);
             });
-
             document.getElementById('inputForm').classList.add('hidden');
             document.getElementById('reportSection').classList.remove('hidden');
             setTimeout(() => { window.print(); }, 1000);
+        }
+
+        function uploadPdfToDrive() {
+            const fileInput = document.getElementById('pdfUploadInput');
+            const status = document.getElementById('pdfStatus');
+            const btn = document.getElementById('pdfBtn');
+            const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbzOIqF-vPXB1vn8DnzKhmhkCE8m7C-wydF16JKsv0FKCEyE6thbyhU6YRpuQRkkaVM1/exec"; 
+
+            if (fileInput.files.length === 0) return alert("Pilih fail PDF!");
+
+            status.innerText = "⏳ Sedang upload...";
+            status.style.color = "#b45309"; btn.disabled = true;
+
+            const file = fileInput.files[0];
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const base64 = e.target.result.split(',')[1];
+                fetch(WEB_APP_URL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    body: JSON.stringify({ base64: base64, contentType: file.type, fileName: file.name })
+                }).then(() => {
+                    status.innerText = "✅ Berjaya dihantar!";
+                    status.style.color = "#15803d"; btn.disabled = false; fileInput.value = "";
+                }).catch(() => {
+                    status.innerText = "❌ Ralat sambungan!";
+                    status.style.color = "#b91c1c"; btn.disabled = false;
+                });
+            };
+            reader.readAsDataURL(file);
         }
     </script>
 </body>
