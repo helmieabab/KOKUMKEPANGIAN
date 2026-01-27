@@ -3,85 +3,143 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sistem Kokurikulum SK Kepangian</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <title>Sistem Dokumen KOKUM</title>
     <style>
         body {
-            font-family: 'Inter', sans-serif;
-            background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background-color: #f4f7f6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             min-height: 100vh;
+            margin: 0;
         }
-        .glass-card {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 450px;
+            text-align: center;
         }
-        .menu-icon {
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        h2 { color: #2c3e50; margin-bottom: 25px; }
+        .section {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #e9ecef;
         }
-        .menu-item:hover .menu-icon {
-            transform: translateY(-10px) scale(1.1);
+        .btn {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+            margin-top: 10px;
         }
+        .btn-download { background-color: #27ae60; color: white; }
+        .btn-download:hover { background-color: #219150; }
+        .btn-upload { background-color: #2980b9; color: white; }
+        .btn-upload:hover { background-color: #1f6391; }
+        .btn:disabled { background-color: #bdc3c7; cursor: not-allowed; }
+        
+        #statusMessage {
+            margin-top: 15px;
+            padding: 10px;
+            border-radius: 5px;
+            display: none;
+            font-size: 14px;
+        }
+        input[type="file"] { margin-top: 10px; }
     </style>
 </head>
-<body class="flex items-center justify-center p-6">
+<body>
 
-    <div class="max-w-4xl w-full">
-        <div class="text-center mb-10">
-            <img src="https://i.postimg.cc/kVCz4Wgj/logo-sk-kepangian.png" alt="Logo Sekolah" class="w-24 mx-auto mb-4 drop-shadow-2xl">
-            <h1 class="text-3xl md:text-4xl font-extrabold text-white tracking-tight uppercase">
-                Sistem Digital Kokurikulum
-            </h1>
-            <p class="text-blue-200 mt-2 font-medium tracking-widest uppercase text-sm">
-                Sekolah Kebangsaan Kepangian Ranau
-            </p>
-            <div class="h-1 w-24 bg-amber-500 mx-auto mt-4 rounded-full"></div>
-        </div>
+<div class="card">
+    <h2>📁 Portal Laporan KOKUM</h2>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            
-            <a href="laporan.html" class="menu-item group glass-card p-8 rounded-3xl shadow-2xl flex flex-col items-center text-center transition-all hover:bg-white">
-                <div class="menu-icon w-20 h-20 bg-blue-100 rounded-2xl flex items-center justify-center mb-6 shadow-inner">
-                    <span class="text-4xl">📝</span>
-                </div>
-                <h2 class="text-xl font-bold text-slate-800 group-hover:text-blue-900 transition-colors">PELAPORAN</h2>
-                <p class="text-sm text-slate-500 mt-2">Jana laporan perjumpaan mingguan & kehadiran</p>
-                <div class="mt-6 text-blue-600 font-bold text-xs uppercase tracking-widest flex items-center">
-                    Masuk <span class="ml-2 group-hover:translate-x-2 transition-transform">→</span>
-                </div>
-            </a>
-
-            <a href="data.html" class="menu-item group glass-card p-8 rounded-3xl shadow-2xl flex flex-col items-center text-center transition-all hover:bg-white border-4 border-amber-400">
-                <div class="menu-icon w-20 h-20 bg-amber-100 rounded-2xl flex items-center justify-center mb-6 shadow-inner">
-                    <span class="text-4xl">👥</span>
-                </div>
-                <h2 class="text-xl font-bold text-slate-800 group-hover:text-amber-600 transition-colors">DATA AHLI</h2>
-                <p class="text-sm text-slate-500 mt-2">Senarai nama murid mengikut unit & tahun</p>
-                <div class="mt-6 text-amber-600 font-bold text-xs uppercase tracking-widest flex items-center">
-                    Semak <span class="ml-2 group-hover:translate-x-2 transition-transform">→</span>
-                </div>
-            </a>
-
-            <a href="takwim.html" class="menu-item group glass-card p-8 rounded-3xl shadow-2xl flex flex-col items-center text-center transition-all hover:bg-white">
-                <div class="menu-icon w-20 h-20 bg-emerald-100 rounded-2xl flex items-center justify-center mb-6 shadow-inner">
-                    <span class="text-4xl">📅</span>
-                </div>
-                <h2 class="text-xl font-bold text-slate-800 group-hover:text-emerald-700 transition-colors">TAKWIM</h2>
-                <p class="text-sm text-slate-500 mt-2">Jadual aktiviti & giliran guru bertugas</p>
-                <div class="mt-6 text-emerald-600 font-bold text-xs uppercase tracking-widest flex items-center">
-                    Lihat <span class="ml-2 group-hover:translate-x-2 transition-transform">→</span>
-                </div>
-            </a>
-
-        </div>
-
-        <div class="mt-16 text-center">
-            <p class="text-blue-300 text-xs font-medium uppercase tracking-tighter opacity-70">
-                &copy; 2024 SK KEPANGIAN RANAU - UNIT KOKURIKULUM
-            </p>
-        </div>
+    <div class="section">
+        <p style="margin-top:0;"><strong>Langkah 1:</strong> Muat turun template laporan di bawah.</p>
+        <a href="TEMPLATE_LAPORAN.pdf" download="Template_Laporan_KOKUM.pdf">
+            <button class="btn btn-download">📥 Muat Turun PDF</button>
+        </a>
     </div>
+
+    <div class="section">
+        <p style="margin-top:0;"><strong>Langkah 2:</strong> Upload laporan yang telah siap.</p>
+        <input type="file" id="fileInput" accept="application/pdf">
+        <button onclick="uploadFile()" id="uploadBtn" class="btn btn-upload">🚀 Hantar ke Google Drive</button>
+        
+        <div id="statusMessage"></div>
+    </div>
+    
+    <p style="font-size: 12px; color: #7f8c8d;">Sistem KOKUM KEPANGIAN &copy; 2026</p>
+</div>
+
+<script>
+function uploadFile() {
+    const fileInput = document.getElementById('fileInput');
+    const status = document.getElementById('statusMessage');
+    const btn = document.getElementById('uploadBtn');
+    
+    // URL WEB APP ANDA
+    const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbzOIqF-vPXB1vn8DnzKhmhkCE8m7C-wydF16JKsv0FKCEyE6thbyhU6YRpuQRkkaVM1/exec"; 
+
+    if (fileInput.files.length === 0) {
+        alert("Sila pilih fail PDF dahulu!");
+        return;
+    }
+
+    const file = fileInput.files[0];
+    if (file.type !== "application/pdf") {
+        alert("Sila pilih fail dalam format PDF sahaja!");
+        return;
+    }
+
+    const reader = new FileReader();
+    
+    // Setup Loading UI
+    status.style.display = "block";
+    status.style.backgroundColor = "#fff3cd";
+    status.style.color = "#856404";
+    status.innerText = "⏳ Sedang menghantar... Sila tunggu.";
+    btn.disabled = true;
+
+    reader.onload = function(e) {
+        const base64 = e.target.result.split(',')[1];
+        const data = {
+            base64: base64,
+            contentType: file.type,
+            fileName: file.name
+        };
+
+        fetch(WEB_APP_URL, {
+            method: 'POST',
+            mode: 'no-cors', 
+            body: JSON.stringify(data)
+        })
+        .then(() => {
+            status.style.backgroundColor = "#d4edda";
+            status.style.color = "#155724";
+            status.innerText = "✅ BERJAYA! Fail telah masuk ke folder Drive.";
+            btn.disabled = false;
+            fileInput.value = ""; 
+        })
+        .catch(err => {
+            status.style.backgroundColor = "#f8d7da";
+            status.style.color = "#721c24";
+            status.innerText = "❌ RALAT: Sambungan gagal.";
+            btn.disabled = false;
+        });
+    };
+    reader.readAsDataURL(file);
+}
+</script>
 
 </body>
 </html>
